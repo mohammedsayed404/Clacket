@@ -9,17 +9,12 @@ import { Observable } from 'rxjs';
 export class MockMoviesService {
 // export class MockMoviesService {
 
-
-  TMDBUrl:string = API.TMDBUrl
-  Key:string = API.APIKey
-
-
   constructor(private _httpClient:HttpClient) { }
 ///trending/all/day?api_key=bb719a0995d909ccf6b0f20d425c9698
 
 
 GetTrindingMovies():Observable<any>{
-  return this._httpClient.get(`${this.TMDBUrl}/trending/movie/day?api_key=${this.Key}`);
+  return this._httpClient.get(`${API.TMDBUrl}/trending/movie/day`,{headers:API.TMDB_Header_Token});
   }
 
 

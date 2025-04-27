@@ -1,11 +1,11 @@
 <p class="p-5  bg-warning text-center text-white">
-  home works!
+  Watchlist Movie works!
 </p>
 
 
 
 <div class="row g-5">
-@for (movie of moviesList; track $index) {
+@for (movie of WatchlistMovielist; track $index) {
 
   <ng-container>
 
@@ -24,9 +24,7 @@
             <div class="d-flex align-items-center gap-1">
 
              <div class="WatchList">
-              <button class="btn btn-outline-warning" (click)="addToWatchList(movie.id)">+</button>
-                <i class="bi bi-plus"></i>
-                <span>Add to Watchlist</span>
+              <button class="btn btn-outline-danger" (click)="RemoveFromWatchlist(movie.id)">Remove From Watchlist</button>
              </div>
               <i class="bi bi-eye"></i>
               <span>{{movie.popularity.toFixed(1)}}K</span>
