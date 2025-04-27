@@ -6,12 +6,14 @@ import { LoginComponent } from './Views/Components/login/login.component';
 import { BlankLayoutComponent } from './Layouts/blank-layout/blank-layout.component';
 import { HomeComponent } from './Views/Components/home/home.component';
 import { authGuard } from './Core/Guards/auth.guard';
+import { WatchlistMovieComponent } from './Views/Components/WatchlistMovie/WatchlistMovie.component';
 
 export const routes: Routes = [
 {path:'', canActivate:[authGuard], component:BlankLayoutComponent,children:[
 
 {path:'', redirectTo:'home', pathMatch:'full'},
 {path:'home', component:HomeComponent, title:'Home'},
+{path:'WatchlistMovie', component:WatchlistMovieComponent, title:'WatchlistMovie'},
 
 ]},
 
