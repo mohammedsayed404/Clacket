@@ -1,0 +1,56 @@
+<div class="card m-auto" id="register">
+  <h2>Register</h2>
+
+  <form [formGroup]="registerForm" (ngSubmit)="Register(registerForm)">
+    <div class="mb-3">
+      <input #userNameInput type="text" id="username" placeholder="Username" formControlName="userName" class="form-control " required>
+      <div class="alert alert-danger" *ngIf="
+      registerForm.get('userName')?.errors &&
+      (registerForm.get('userName')?.touched || userNameInput.value.length > 0)
+    ">
+        <p *ngIf="registerForm.get('userName')?.getError('required')">
+          UserName must be required
+        </p>
+
+      </div>
+    </div>
+
+
+    <div class="mb-3">
+      <input #emailInput type="email" id="email" placeholder="Email" formControlName="email" class="form-control"
+        required>
+      <div class="alert alert-danger" *ngIf="
+      registerForm.get('email')?.errors &&
+      (registerForm.get('email')?.touched || emailInput.value.length > 0)
+    ">
+        <p *ngIf="registerForm.get('email')?.getError('required')">
+          Email must be required
+        </p>
+        <p *ngIf="registerForm.get('email')?.getError('email')">
+          Email is not valid
+        </p>
+      </div>
+    </div>
+
+
+    <div class="mb-3">
+      <input #passwordInput type="password" id="password" placeholder="Password" formControlName="password" class="form-control"
+        required>
+        <div class="alert alert-danger" *ngIf="
+        registerForm.get('password')?.errors &&
+        (registerForm.get('password')?.touched || passwordInput.value.length > 0)
+      ">
+          <p *ngIf="registerForm.get('password')?.getError('required')">
+            Password must be required
+          </p>
+
+        </div>
+    </div>
+    <button type="submit">Register</button>
+
+
+  </form>
+
+</div>
+
+
