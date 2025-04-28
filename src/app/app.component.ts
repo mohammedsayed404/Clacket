@@ -6,7 +6,7 @@ import { MovieSearchComponent } from "./Components/movie-search/movie-search.com
   selector: 'app-root',
   standalone: true,
   imports: [
-    // RouterOutlet, 
+    RouterOutlet, 
     MovieSearchComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
