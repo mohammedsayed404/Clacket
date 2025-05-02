@@ -9,9 +9,22 @@
     <!-- Center Nav Links -->
     <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
       <ul class="navbar-nav">
+
         <li class="nav-item"><a class="nav-link text-white active" routerLinkActive="bg-danger"  routerLink="home">Home</a></li>
 
         <li class="nav-item"><a class="nav-link text-white " routerLinkActive="bg-danger"  routerLink="WatchlistMovie">Watchlist Movie</a></li>
+
+
+        <li class="nav-item dropdown-wrapper">
+          <a class="nav-link text-white" routerLinkActive="bg-danger" >Movies</a>
+          <ul class="dropdown-menu-custom  ">
+            <li><a class="dropdown-item" routerLink="nowPlaying">Now Playing</a></li>
+            <li><a class="dropdown-item" routerLink="popular">Popular</a></li>
+            <li><a class="dropdown-item" routerLink="topRated">Top Rated</a></li>
+            <li><a class="dropdown-item" routerLink="upcoming">Upcoming</a></li>
+          </ul>
+        </li>
+
 
         <li class="nav-item">
           <a class="nav-link position-relative" routerLink="WatchlistMovie">
