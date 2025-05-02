@@ -24,6 +24,8 @@ export const routes: Routes = [
 {path:'topRated', component:TopRatedComponent, title:'topRated'},
 {path:'upcoming', component:UpcomingComponent, title:'upcoming'},
 {path:'details', component:MovieDetailsComponent, title:'details'},
+{path:'**', component: NotFoundComponent},
+
 
 
 
