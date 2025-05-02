@@ -33,7 +33,7 @@ ngOnInit():void {
   });
 
 }
-  addToWatchList(movieId: number): void {
+    addToWatchList(movieId: number): void {
     this.WatchlistMovieSubscribe = this._watchlistMovieService.AddToWatchlist(movieId).subscribe({
       next: (response) => {
         console.log('Movie added to watchlist:', response);

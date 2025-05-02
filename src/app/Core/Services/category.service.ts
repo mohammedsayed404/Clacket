@@ -8,35 +8,36 @@ import { NowPlayingMovies } from '../Interfaces/now-playing-movies';
   providedIn: 'root'
 })
 export class CategoryService {
-  apikey =  "55d89f63393848325bc1c5c988edb553";
+  // apikey =  "55d89f63393848325bc1c5c988edb553";
   
   constructor(private _httpClient:HttpClient) { 
-    // hegegs
-  }
-
-
-  getNowPlayingMovis():Observable<any>  
-  {
     
-    return this._httpClient.get(`${API.TMDBUrl}/movie/now_playing?language=${API.language}&page=1&api_key=${API.APIKey}`);
   }
 
-  getPopularMovis():Observable<any>  
+
+  getNowPlayingMovis(pageNumber : number =1):Observable<any>  
   {
-    
-    return this._httpClient.get(`${API.TMDBUrl}/movie/popular?language=${API.language}&page=1&api_key=${API.APIKey}`);
+    return this._httpClient.get(`${API.TMDBUrl}/movie/now_playing?language=${API.language}&page=${pageNumber}&api_key=${API.APIKey}`);
   }
 
-  getTopRatedMovis():Observable<any>  
+  getPopularMovis(pageNumber : number =2):Observable<any>  
   {
-    
-    return this._httpClient.get(`${API.TMDBUrl}/movie//top_rated?language=${API.language}&page=1&api_key=${API.APIKey}`);
+    return this._httpClient.get(`${API.TMDBUrl}/movie/popular?language=${API.language}&page=${pageNumber}&api_key=${API.APIKey}`);
   }
 
-  getUpcomingMovis():Observable<any>  
+  getTopRatedMovis(pageNumber : number =1):Observable<any>  
   {
-   
-    return this._httpClient.get(`${API.TMDBUrl}/movie/upcoming?language=${API.language}&page=1&api_key=${API.APIKey}`);
+    return this._httpClient.get(`${API.TMDBUrl}/movie/top_rated?language=${API.language}&page=${pageNumber}&api_key=${API.APIKey}`);
+  }
+
+  getUpcomingMovis(pageNumber : number =1):Observable<any>  
+  {
+    return this._httpClient.get(`${API.TMDBUrl}/movie/upcoming?language=${API.language}&page=${pageNumber}&api_key=${API.APIKey}`);
+  }
+
+  getMovieDetails(movie_id: number) :Observable<any> 
+  {//https://api.themoviedb.org/3/movie/{movie_id}
+    return  this._httpClient.get(`https://api.themoviedb.org/3/movie/${movie_id}?api_key=bb719a0995d909ccf6b0f20d425c9698`)
   }
 
 }
