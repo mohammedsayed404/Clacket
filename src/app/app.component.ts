@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { MovieDetailComponent } from "./Core/components/movie-detail/movie-detail.component";
+import { NavAuthComponent } from "./Views/Components/nav-auth/nav-auth.component";
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet, MovieDetailComponent],
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
