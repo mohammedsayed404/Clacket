@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="movie-detail" *ngIf="movie">
+    <div class="backdrop" [style.backgroundImage]="'url(' + (movie.backdrop_path | tmdbImageUrl) + ')'" >
+      <div class="backdrop-overlay"></div>
+    </div>
+    <div class="content">
+      <div class="movie-info">
+        <div class="details">
+          <img mat-card-image [src]="movie.poster_path | tmdbImageUrl: 'w185'" alt="{{ movie.title }} Poster" class="movie-poster" />
+          <h1>{{ movie.title }}</h1>
+          <p class="tagline" *ngIf="movie.tagline">“{{ movie.tagline }}”</p>
+          <div class="meta">
+            <mat-chip-set>
+              <mat-chip color="accent">
+                <mat-icon>star</mat-icon>
+                {{ movie.vote_average }} ({{ movie.vote_count }} votes)
+              </mat-chip>
+              <mat-chip>Release Date: {{ movie.release_date | date }}</mat-chip>
+              <mat-chip>Runtime: {{ movie.runtime }} min</mat-chip>
+              <mat-chip>Genres:
+                <ng-container *ngFor="let genre of movie.genres; let i = index">
+                  {{ genre.name }}<span *ngIf="i < movie.genres.length - 1">, </span>
+                </ng-container>
+              </mat-chip>
+              <mat-chip>Language: {{ movie.original_language | uppercase }}</mat-chip>
+              <mat-chip>Budget: {{ movie.budget | currency }}</mat-chip>
+              <mat-chip>Revenue: {{ movie.revenue | currency }}</mat-chip>
+              <mat-chip>Production Companies:
+                <ng-container *ngFor="let company of movie.production_companies; let i = index">
+                  {{ company.name }}<span *ngIf="i < movie.production_companies.length - 1">, </span>
+                </ng-container>
+              </mat-chip>
+              <mat-chip>Spoken Languages:
+                <ng-container *ngFor="let language of movie.spoken_languages; let i = index">
+                  {{ language.name }}<span *ngIf="i < movie.spoken_languages.length - 1">, </span>
+                </ng-container>
+              </mat-chip>
+            </mat-chip-set>
+          </div>
+          <p class="overview">{{ movie.overview }}</p>
+        </div>
+        <section class="trailer" *ngIf="movie.videos.results.length">
+          <div class="video-container">
+            <iframe
+              *ngIf="movie.videos.results.length > 0"
+              [src]="videoUrl"
+              class="movie-video"
+              frameborder="0"
+            ></iframe>
+          </div>
+        </section>
+        <app-cast-carousel [castList]="movie.credits.cast"></app-cast-carousel>
+      </div>
+    </div>
+  </div>
+  <div class="loading" *ngIf="loading">
+    <mat-spinner></mat-spinner>
+    <p>Loading...</p>
+  </div>
+  <button mat-raised-button color="primary" (click)="goBack()">Back</button>
+</div>

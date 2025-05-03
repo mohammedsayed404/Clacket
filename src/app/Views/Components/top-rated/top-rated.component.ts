@@ -25,8 +25,7 @@ export class TopRatedComponent implements OnInit {
   ngOnInit(): void {
     this._CategoryService.getTopRatedMovis().subscribe({
       next: (res) => {
-        this.topRatedList =  res.results;
-        console.log(res.results)
+        this.topRatedList = (res as ITopRated).results;
       },
       error: (err) =>{
 

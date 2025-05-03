@@ -12,6 +12,7 @@ import { PopularComponent } from './Views/Components/popular/popular.component';
 import { TopRatedComponent } from './Views/Components/top-rated/top-rated.component';
 import { UpcomingComponent } from './Views/Components/upcoming/upcoming.component';
 import { MovieDetailsComponent } from './Views/Components/movie-details/movie-details.component';
+import { MovieDetailComponent } from './Core/components/movie-detail/movie-detail.component';
 
 export const routes: Routes = [
 {path:'', canActivate:[authGuard], component:BlankLayoutComponent,children:[
@@ -24,6 +25,7 @@ export const routes: Routes = [
 {path:'topRated', component:TopRatedComponent, title:'topRated'},
 {path:'upcoming', component:UpcomingComponent, title:'upcoming'},
 {path:'details', component:MovieDetailsComponent, title:'details'},
+{path: 'details/:id', component:MovieDetailComponent, title:'details'},
 {path:'**', component: NotFoundComponent},
 
 
@@ -34,7 +36,7 @@ export const routes: Routes = [
 
 {path:'',component:AuthLayoutComponent,children:[
   {path:'', redirectTo:'login', pathMatch:'full'},
-  { path: 'login', component: LoginComponent , title:'Login' },
+  { path: 'login', component: LoginComponent, title:'Login' },
   { path: 'register', component: RegisterComponent , title:'Register' },
 
 
