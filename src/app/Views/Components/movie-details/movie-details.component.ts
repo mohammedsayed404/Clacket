@@ -37,9 +37,9 @@ export class MovieDetailsComponent  implements  OnInit {
     this.test();
   }
 
-  test() :any
+  test()
   {
-    for(var x of this.moviesIds)
+    for(const x of this.moviesIds)
     {
       this._CategoryService.getMovieDetails(x).subscribe({
         next: (res) =>
@@ -47,7 +47,7 @@ export class MovieDetailsComponent  implements  OnInit {
           // res.results.map(x =>{  x.
   
           // } )
-          this.allMovies.push(res)
+          this.allMovies.push(res as NowPlayingMovies)
           console.log(this.allMovies)
           console.log(res)
         },

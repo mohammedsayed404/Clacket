@@ -26,8 +26,7 @@ export class UpcomingComponent implements OnInit {
   ngOnInit(): void {
     this._CategoryService.getUpcomingMovis().subscribe({
       next: (res) => {
-        this.upcomingMovies =  res.results;
-        console.log(res.results)
+        this.upcomingMovies = (res as IUpcoming).results;
       },
       error: (err) =>{
 

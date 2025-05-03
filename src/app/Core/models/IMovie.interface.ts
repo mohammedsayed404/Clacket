@@ -93,4 +93,4 @@ interface Crew {
     department: string;
     job: string;
 }
-export { IMovie, Genre, ProductionCompany, ProductionCountry, SpokenLanguage, videos, video, credits, Cast, Crew };
+export type { IMovie, Genre, ProductionCompany, ProductionCountry, SpokenLanguage, videos, video, credits, Cast, Crew };

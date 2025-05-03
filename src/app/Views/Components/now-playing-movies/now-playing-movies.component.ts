@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from '../../../Core/Services/category.service';
 import { NowPlayingMovies } from '../../../Core/Interfaces/now-playing-movies';
-import { MockMoviesService } from '../../../Core/Services/MockMovies.service';
 import { WatchlistMovieService } from '../../../Core/Services/WatchlistMovie.service';
 import { ToastrService } from 'ngx-toastr';
 import { ScrollTopComponent } from "../scroll-top/scroll-top.component";
@@ -24,9 +23,8 @@ export class NowPlayingMoviesComponent implements  OnInit {
   ngOnInit(): void {
 
     this._CategoryService.getNowPlayingMovis().subscribe({
-      next: ({results}) => {
-        this.nowPlayingMoviesList = results;
-        console.log(results);
+      next: (res) => {
+        this.nowPlayingMoviesList = (res as { results: NowPlayingMovies[] }).results;
       },
       error: (err) => {
         console.log(err);

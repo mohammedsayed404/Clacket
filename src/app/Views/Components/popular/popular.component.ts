@@ -4,6 +4,7 @@ import { WatchlistMovieService } from '../../../Core/Services/WatchlistMovie.ser
 import { NowPlayingMovies } from '../../../Core/Interfaces/now-playing-movies';
 import { ToastrService } from 'ngx-toastr';
 import { ScrollTopComponent } from "../scroll-top/scroll-top.component";
+import { IPopular } from '../../../Core/Interfaces/ipopular';
 
 @Component({
   selector: 'app-popular',
@@ -23,8 +24,7 @@ export class PopularComponent implements  OnInit{
   ngOnInit(): void {
     this._CategoryService.getPopularMovis().subscribe({
       next: (res) => {
-        this.popularMovies =  res.results;
-        console.log(res.results)
+        this.popularMovies = (res as IPopular).results;
       },
       error: (err) =>  {
         

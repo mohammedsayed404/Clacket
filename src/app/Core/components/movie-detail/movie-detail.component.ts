@@ -1,8 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MoviesService } from '../../Services/movies.service';
 import { IMovie } from '../../models/IMovie.interface';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -21,15 +21,16 @@ import { MatDividerModule } from '@angular/material/divider';
   styleUrl: './movie-detail.component.css'
 })
 export class MovieDetailComponent implements OnInit {
-  @Input() movieId = 0;
+  movieId = 0;
   movie: IMovie | undefined;
   loading = true;
   videoUrl: string | undefined;
   /**
    *
    */
-  constructor(private movieService: MoviesService, private sanitizer: DomSanitizer) {}
+  constructor(private movieService: MoviesService, @Inject(DomSanitizer) private sanitizer: DomSanitizer, private activatedRoute: ActivatedRoute) {}
   ngOnInit(): void {
+    this.movieId = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     if (this.movieId !== 0) {
       this.movieService.getDetails(this.movieId).then((movie) => {
         this.movie = movie as IMovie;
