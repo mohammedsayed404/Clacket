@@ -1,40 +1,66 @@
-
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MockMoviesService } from '../../../Core/Services/MockMovies.service';
-import { Subscription } from 'rxjs';
-import { API } from '../../../API/API';
 import { WatchlistMovieService } from '../../../Core/Services/WatchlistMovie.service';
+import { Subscription } from 'rxjs';
+import { CommonModule } from '@angular/common';
+import { TrendingMoviesSectionComponent } from '../trending-movies-section/trending-movies-section.component';
 
 @Component({
   selector: 'app-home',
+  imports: [CommonModule, TrendingMoviesSectionComponent],
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
-export class HomeComponent implements OnInit , OnDestroy {
-  constructor(private _mockMoviesService:MockMoviesService,
-    private _watchlistMovieService:WatchlistMovieService
-   ) { }
+export class HomeComponent implements OnInit, OnDestroy {
+  // trendingMovies: any[] = [];
+  popularMovies: any[] = [];
+  // loadingTrending: boolean = true;       //instead of spinning loader
+  loadingPopular: boolean = true;       //instead of spinning loader
 
+  // trendingMovieSubscribe: Subscription = new Subscription();
+  popularMovieSubscribe: Subscription = new Subscription();
+  watchlistMovieSubscribe: Subscription = new Subscription();
 
-tridingMovieSubscribe:Subscription= new Subscription();
-WatchlistMovieSubscribe:Subscription= new Subscription();
-moviesList:any[] = [];
+  constructor(
+    private _mockMoviesService: MockMoviesService,
+    private _watchlistMovieService: WatchlistMovieService
+  ) {}
 
-ngOnInit():void {
+  ngOnInit(): void {
+    // this.getTrendingMovies();
+    this.getPopularMovies();
+  }
 
-  this.tridingMovieSubscribe = this._mockMoviesService.GetTrindingMovies().subscribe({
-    next: ({results}) => {
-      this.moviesList = results
-      console.log(this.moviesList);
-    },
-    error: (err) => {
-      console.log(err);
-    },
-  });
+  // getTrendingMovies(): void {
+  //   this.trendingMovieSubscribe = this._mockMoviesService.GetTrendingMovies().subscribe({
+  //     next: ({ results }) => {
+  //       this.trendingMovies = results;
+  //       console.log('Trending Movies:', this.trendingMovies);
+  //       this.loadingTrending = false;
+  //     },
+  //     error: (err) => {
+  //       console.error('Error fetching trending movies:', err);
+  //       this.loadingTrending = false;
+  //     },
+  //   });
+  // }
 
-}
+  getPopularMovies(): void {
+    this.popularMovieSubscribe = this._mockMoviesService.GetPopularMovies().subscribe({
+      next: ({ results }) => {
+        this.popularMovies = results;
+        console.log('Popular Movies:', this.popularMovies);
+        this.loadingPopular = false;
+      },
+      error: (err) => {
+        console.error('Error fetching popular movies:', err);
+        this.loadingPopular = false;
+      },
+    });
+  }
+
   addToWatchList(movieId: number): void {
-    this.WatchlistMovieSubscribe = this._watchlistMovieService.AddToWatchlist(movieId).subscribe({
+    this.watchlistMovieSubscribe = this._watchlistMovieService.AddToWatchlist(movieId).subscribe({
       next: (response) => {
         console.log('Movie added to watchlist:', response);
         this._watchlistMovieService.total_results.next(this._watchlistMovieService.total_results.value + 1);
@@ -43,15 +69,11 @@ ngOnInit():void {
         console.error('Error adding movie to watchlist:', err);
       },
     });
-
-
-
-
   }
 
   ngOnDestroy(): void {
-    this.tridingMovieSubscribe.unsubscribe();
-    this.WatchlistMovieSubscribe.unsubscribe();
+    // this.trendingMovieSubscribe.unsubscribe();
+    this.popularMovieSubscribe.unsubscribe();
+    // this.watchlistMovieSubscribe.unsubscribe();
   }
-
 }

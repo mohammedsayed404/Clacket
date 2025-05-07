@@ -7,26 +7,29 @@ import { BlankLayoutComponent } from './Layouts/blank-layout/blank-layout.compon
 import { HomeComponent } from './Views/Components/home/home.component';
 import { authGuard } from './Core/Guards/auth.guard';
 import { WatchlistMovieComponent } from './Views/Components/WatchlistMovie/WatchlistMovie.component';
+import { LandingPageComponent } from './Views/Components/landing-page/landing-page.component';
 
 export const routes: Routes = [
-{path:'', canActivate:[authGuard], component:BlankLayoutComponent,children:[
+  
+  {
+    path: '',component: AuthLayoutComponent,
+    children: [
+      { path: '', component: LandingPageComponent, title: 'Welcome' }, 
+      { path: 'login', component: LoginComponent, title: 'Login' },
+      { path: 'register', component: RegisterComponent, title: 'Register' }
+    ]
+  },
 
-{path:'', redirectTo:'home', pathMatch:'full'},
-{path:'home', component:HomeComponent, title:'Home'},
-{path:'WatchlistMovie', component:WatchlistMovieComponent, title:'WatchlistMovie'},
+ 
+  {path: '',canActivate: [authGuard],
+    component: BlankLayoutComponent,
+    children: [
+      { path: 'home', component: HomeComponent, title: 'Home' },
+      { path: 'WatchlistMovie', component: WatchlistMovieComponent, title: 'WatchlistMovie' }
+    ]
+  },
 
-]},
-
-{path:'',component:AuthLayoutComponent,children:[
-  {path:'', redirectTo:'login', pathMatch:'full'},
-  { path: 'login', component: LoginComponent , title:'Login' },
-  { path: 'register', component: RegisterComponent , title:'Register' },
-
-
-]},
-
-{ path: '**', component: NotFoundComponent }
-
-
-
+  { path: '**', component: NotFoundComponent }
 ];
+
+

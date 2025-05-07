@@ -1,0 +1,85 @@
+/* Fullscreen section with background image */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-image: url('/images/LandingPageBackgroundTest.jpg'); 
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    overflow: hidden;
+  }
+  
+  /* Dark overlay */
+  .hero-section .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+  }
+  
+  /* Main content */
+  .hero-section .content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    padding: 20px;
+  }
+  
+  /* Play button */
+  .hero-section .play-button {
+    font-size: 100px;
+    color: white;
+    opacity: 0.8;
+    margin-bottom: 30px;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .hero-section .play-button:hover {
+    opacity: 1;
+  }
+  
+  /* Title */
+  .hero-section .title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  /* Description text */
+  .hero-section .description {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    opacity: 0.85;
+  }
+  
+  /* Call to action button */
+  .hero-section .cta-button {
+    background-color: #e50914;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .hero-section .cta-button:hover {
+    background-color: #b00610;
+  }
+  
+  .hero-section .cta-button i {
+    margin-right: 8px;
+  }
+  
