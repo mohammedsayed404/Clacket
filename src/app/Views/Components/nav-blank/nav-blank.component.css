@@ -1,0 +1,32 @@
+.dropdown-wrapper {
+    position: relative;
+  }
+  
+  .dropdown-menu-custom {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: rgb(93, 21, 21);
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    list-style: none;
+    padding: 10px 0;
+    margin: 0;
+    z-index: 1000;
+    min-width: 180px;
+  }
+  
+  .dropdown-menu-custom li {
+    padding: 6px 20px;
+    cursor: pointer;
+  }
+  
+  .dropdown-menu-custom li:hover {
+    background-color: #f8f9fa5b;
+  }
+  
+  .dropdown-wrapper:hover .dropdown-menu-custom {
+    display: block;
+  }
+  

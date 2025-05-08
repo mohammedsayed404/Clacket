@@ -19,12 +19,13 @@ GetWatchlist():Observable<any>{
   return this._httpClient.get(`${API.TMDBUrl}/account/${API.TMDB_Account_Id}/watchlist/movies`,{headers:API.TMDB_Header_Token});
 }
 
-AddToWatchlist(movieId:number):Observable<any>{
+AddToWatchlist(movieId:number):Observable<any>{ 
   return this._httpClient.post(`${API.TMDBUrl}/account/${API.TMDB_Account_Id}/watchlist`, {
     media_type: 'movie',
     media_id: movieId,
     watchlist: true
   },{headers:API.TMDB_Header_Token});
+  
 
 }
 

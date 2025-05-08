@@ -1,0 +1,64 @@
+<div class="container">
+  <!-- <div #swiperContainer class="swiper-container" init="false" >
+    <div class="swiper-wrapper">
+      <ng-container *ngFor="let cast of castList">
+        <div class="swiper-slide" *ngIf="cast.profile_path">
+          <img [src]="cast.profile_path | tmdbImageUrl: 'w185'" alt="{{ cast.name }}" class="cast-image" width="185px" />
+          <p>{{ cast.name }}</p>
+        </div>
+      </ng-container>
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div> -->
+  <!-- <div class="carousel slide">
+    <div class="carousel-inner">
+      <ng-container *ngFor="let cast of castList; let i = index">
+        <div class="carousel-item" [ngClass]="{'active': i === 0}" *ngIf="cast.profile_path">
+          <img [src]="cast.profile_path | tmdbImageUrl: 'w185'" alt="{{ cast.name }}" class="cast-image d-block" />
+          <div class="carousel-caption d-none d-md-block">
+            <h5>{{ cast.name }}</h5>
+          </div>
+        </div>
+      </ng-container>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+</div> -->
+<div *ngIf="castList">
+<mat-card class="movie-detail-card">
+  <section class="cast" *ngIf="castList.length">
+    <h2>Cast</h2>
+    <div class="cast-grid">
+      <mat-card *ngFor="let member of castList | slice:0:12" class="cast-card">
+        <div *ngIf="member.profile_path" class="cast-container">
+          <img mat-card-image 
+              [src]=" (member.profile_path | tmdbImageUrl: 'w185')"
+              alt="{{ member.name }}" />
+              <mat-card-content>
+                <p class="actor-name">{{ member.name }}</p>
+                <p class="character">as {{ member.character }}</p>
+              </mat-card-content>
+        </div>
+      </mat-card>
+    </div>
+  </section>
+</mat-card> 
+</div> 
+<!-- <swiper-container loop="true" pagination="true" navigation="true" slides-per-view="4">
+    <div *ngFor="let cast of castList">
+      <swiper-slide *ngIf="cast.profile_path">
+        <img [src]="cast.profile_path | tmdbImageUrl: 'w185' " alt="{{ cast.name }}" class="cast-image" />
+        <p>{{ cast.name }}</p>
+      </swiper-slide>
+    </div>
+  <div class="swiper-button-next"></div>
+  <div class="swiper-button-prev"></div>
+</swiper-container> -->
