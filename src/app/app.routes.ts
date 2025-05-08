@@ -13,37 +13,37 @@ import { TopRatedComponent } from './Views/Components/top-rated/top-rated.compon
 import { UpcomingComponent } from './Views/Components/upcoming/upcoming.component';
 import { MovieDetailsComponent } from './Views/Components/movie-details/movie-details.component';
 import { MovieDetailComponent } from './Core/components/movie-detail/movie-detail.component';
+import { LandingPageComponent } from './Views/Components/landing-page/landing-page.component';
+
 
 export const routes: Routes = [
-{path:'', canActivate:[authGuard], component:BlankLayoutComponent,children:[
-
-{path:'', redirectTo:'home', pathMatch:'full'},
-{path:'home', component:HomeComponent, title:'Home'},
-{path:'WatchlistMovie', component:WatchlistMovieComponent, title:'WatchlistMovie'},
-{path:'nowPlaying', component:NowPlayingMoviesComponent, title:'nowPlaying'},
-{path:'popular', component:PopularComponent, title:'popular'},
-{path:'topRated', component:TopRatedComponent, title:'topRated'},
-{path:'upcoming', component:UpcomingComponent, title:'upcoming'},
-{path:'details', component:MovieDetailsComponent, title:'details'},
-{path: 'details/:id', component:MovieDetailComponent, title:'details'},
-{path:'**', component: NotFoundComponent},
-
-
-
-
+//****Auth-Layout****
+{path: '',component: AuthLayoutComponent,
+  children: [
+    { path: '', component: LandingPageComponent, title: 'Welcome' }, 
+    { path: 'login', component: LoginComponent, title: 'Login' },
+    { path: 'register', component: RegisterComponent, title: 'Register' },
+    {path:'**', component: NotFoundComponent},
+  ]
+},
+ 
+//****Blank-Layout****  
+{path:'', canActivate:[authGuard], component:BlankLayoutComponent,
+  children:[
+    // {path:'', redirectTo:'home', pathMatch:'full'}, //I commented this line to avoid redirecting to home page when the app loads => [Salah]
+    {path:'home', component:HomeComponent, title:'Home'},
+    {path:'WatchlistMovie', component:WatchlistMovieComponent, title:'WatchlistMovie'},
+    {path:'nowPlaying', component:NowPlayingMoviesComponent, title:'nowPlaying'},
+    {path:'popular', component:PopularComponent, title:'popular'},
+    {path:'topRated', component:TopRatedComponent, title:'topRated'},
+    {path:'upcoming', component:UpcomingComponent, title:'upcoming'},
+    {path:'details', component:MovieDetailsComponent, title:'details'},
+    {path: 'details/:id', component:MovieDetailComponent, title:'details'},
+    {path:'**', component: NotFoundComponent},
 
 ]},   
 
-{path:'',component:AuthLayoutComponent,children:[
-  {path:'', redirectTo:'login', pathMatch:'full'},
-  { path: 'login', component: LoginComponent, title:'Login' },
-  { path: 'register', component: RegisterComponent , title:'Register' },
-
-
-]},
-
+//****NotFound [General]****
 { path: '**', component: NotFoundComponent }
-
-
 
 ];
