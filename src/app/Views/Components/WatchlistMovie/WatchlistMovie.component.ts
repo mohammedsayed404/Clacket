@@ -2,16 +2,17 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { WatchlistMovieService } from '../../../Core/Services/WatchlistMovie.service';
 import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { IMovie } from '../../../Core/models/IMovie.interface';
 
 @Component({
-  selector: 'app-WatchlistMovie',
+  selector: 'app-watchlistmovie',
   templateUrl: './WatchlistMovie.component.html',
   styleUrls: ['./WatchlistMovie.component.css']
 })
 export class WatchlistMovieComponent implements OnInit , OnDestroy {
 
 WatchlistMovieSubscribe:Subscription= new Subscription();
-WatchlistMovielist:any[] = [];
+WatchlistMovielist:IMovie[] = [];
 
 constructor(private _watchlistMovieService:WatchlistMovieService, private _toastr: ToastrService) { }
 

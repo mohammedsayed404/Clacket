@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { API } from '../../API/API';
 import { Observable } from 'rxjs';
+import { IMovie } from '../models/IMovie.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class MockMoviesService {
 
 
 GetTrindingMovies():Observable<any>{
-  return this._httpClient.get(`${API.TMDBUrl}/trending/movie/day`,{headers:API.TMDB_Header_Token});
+  return this._httpClient.get(`${API.TMDBUrl}/trending/movie/day`);
   }
 
 
