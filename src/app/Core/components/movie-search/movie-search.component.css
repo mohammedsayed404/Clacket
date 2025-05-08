@@ -1,0 +1,125 @@
+:host {
+  /* display: flex; */
+  /* flex-direction: column; */
+  min-height: 100vh; 
+}
+.movie-page {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    font-family: 'Source Sans Pro', Arial, sans-serif;
+    
+  }
+  
+  .page-header {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .filter-nav {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+  }
+  
+  .filter-nav button {
+    background: none;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    color: #666;
+    cursor: pointer;
+    white-space: nowrap;
+    border-radius: 20px;
+    transition: all 0.2s;
+  }
+  
+  .filter-nav button.active {
+    background: #032541;
+    color: white;
+    font-weight: 600;
+  }
+  
+  /* Movie Grid */
+  .movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .movie-card {
+    display: block;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  .movie-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .movie-poster {
+    width: 100%;
+    aspect-ratio: 2/3;
+    object-fit: cover;
+  }
+  
+  .movie-info {
+    padding: 1rem;
+  }
+  
+  .movie-info h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .movie-info p {
+    margin: 0;
+    color: #666;
+    font-size: 0.9rem;
+  }
+  
+  .rating {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin-top: 0.5rem;
+    color: #032541;
+    font-weight: 600;
+  }
+  
+  .star {
+    color: gold;
+  }
+  
+  .loading-spinner,
+  .error-message {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .error-message {
+    color: #d32f2f;
+    background: #ffebee;
+    border-radius: 4px;
+  }
+  .searchBar {
+    padding: 8px;
+    flex-grow: 1;
+  }
+  footer {
+    margin-top: auto; 
+    padding: 20px 0;
+    background: #f8f9fa; 
+  }
+  .pagination { margin: 20px 0; }
+  .page-link { cursor: pointer; }
