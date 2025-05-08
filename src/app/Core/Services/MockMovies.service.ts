@@ -8,16 +8,17 @@ import { IMovie } from '../models/IMovie.interface';
   providedIn: 'root'
 })
 export class MockMoviesService {
-// export class MockMoviesService {
+  constructor(private _httpClient: HttpClient) {}
 
-  constructor(private _httpClient:HttpClient) { }
-///trending/all/day?api_key=bb719a0995d909ccf6b0f20d425c9698
-
-
-GetTrindingMovies():Observable<any>{
-  return this._httpClient.get(`${API.TMDBUrl}/trending/movie/day`);
+  GetTrendingMovies(): Observable<any> {
+    return this._httpClient.get(`${API.TMDBUrl}/trending/movie/day`, {
+      headers: API.TMDB_Header_Token,
+    });
   }
 
-
-
+  GetPopularMovies(): Observable<any> {
+    return this._httpClient.get(`${API.TMDBUrl}/movie/popular`, {
+      headers: API.TMDB_Header_Token,
+    });
+  }
 }
