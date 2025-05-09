@@ -40,9 +40,15 @@ export class TrendingMoviesSectionComponent implements OnInit, OnDestroy {
   getTrendingMovies(): void {
     this.trendingMovieSubscribe = this._mockMoviesService.GetTrendingMovies().subscribe({
       next: ({ results }) => {
-        this.trendingMovies = results;
+        // Precompute runtime and views for each movie
+        this.trendingMovies = results.map((movie: any) => ({
+          ...movie,
+          runtime: movie.runtime || this.generateRandomRuntime(),
+          views: movie.views || this.generateRandomViews()
+        }));
+  
         this.loadingTrending = false;
-
+  
         this.totalSlides = Math.ceil(this.trendingMovies.length / 4);
         this.dots = Array(this.totalSlides).fill(0).map((_, i) => i);
       },
@@ -52,7 +58,7 @@ export class TrendingMoviesSectionComponent implements OnInit, OnDestroy {
       },
     });
   }
-
+  
   prevSlide() {
     if (this.currentSlide > 0) {
       this.currentSlide--;
@@ -72,6 +78,17 @@ export class TrendingMoviesSectionComponent implements OnInit, OnDestroy {
     this.scrollToCurrentSlide();
   }
 
+  private generateRandomRuntime(): string {
+    const hours = 1 + (Math.random() > 0.5 ? 1 : 0);
+    const minutes = Math.floor(Math.random() * 6) * 5 + 30;
+    return `${hours}h ${minutes}min`;
+  }
+  
+  private generateRandomViews(): string {
+    const views = (Math.random() * 5 + 1).toFixed(Math.random() > 0.7 ? 1 : 0);
+    return `${views}K`;
+  }
+  
   private scrollToCurrentSlide() {
     if (this.movieSlider) {
       const cardWidth = 180 + 16; // card width + gap

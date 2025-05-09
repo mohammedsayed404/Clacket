@@ -63,7 +63,7 @@
                             stroke-linejoin="round" />
                         <circle cx="8" cy="8" r="6" stroke="#808080" stroke-width="1.5" />
                     </svg>
-                    <span class="duration">{{ getRuntime(movie) }}</span>
+                    <span class="duration">{{ movie.runtime }}</span>
                 </div>
 
                 <div class="view-info">
@@ -73,7 +73,8 @@
                         <circle cx="8" cy="8" r="2" stroke="#808080" stroke-width="1.5" stroke-linecap="round"
                             stroke-linejoin="round" />
                     </svg>
-                    <span class="views">{{ getViews(movie) }}</span>
+                    <span class="views">{{ movie.views }}</span>
+
                 </div>
             </div>
 
