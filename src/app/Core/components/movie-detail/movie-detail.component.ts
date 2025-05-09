@@ -21,7 +21,7 @@ import { MatDividerModule } from '@angular/material/divider';
   styleUrl: './movie-detail.component.css'
 })
 export class MovieDetailComponent implements OnInit {
-  movieId = 0;
+  movieId: any = 0;
   movie: IMovie | undefined;
   loading = true;
   videoUrl: string | undefined;
@@ -45,6 +45,8 @@ export class MovieDetailComponent implements OnInit {
         this.loading = false;
       });
     }
+
+  
   }
   goBack() {
     window.history.back();

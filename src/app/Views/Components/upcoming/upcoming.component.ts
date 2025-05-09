@@ -5,10 +5,13 @@ import { WatchlistMovieService } from '../../../Core/Services/WatchlistMovie.ser
 import { NowPlayingMovies } from '../../../Core/Interfaces/now-playing-movies';
 import { ToastrService } from 'ngx-toastr';
 import { ScrollTopComponent } from "../scroll-top/scroll-top.component";
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-upcoming',
-  imports: [ScrollTopComponent],
+  imports: [ScrollTopComponent,
+            RouterLink
+  ],
   templateUrl: './upcoming.component.html',
   styleUrl: './upcoming.component.css'
 })

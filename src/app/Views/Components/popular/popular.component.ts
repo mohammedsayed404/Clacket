@@ -5,10 +5,13 @@ import { NowPlayingMovies } from '../../../Core/Interfaces/now-playing-movies';
 import { ToastrService } from 'ngx-toastr';
 import { ScrollTopComponent } from "../scroll-top/scroll-top.component";
 import { IPopular } from '../../../Core/Interfaces/ipopular';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-popular',
-  imports: [ScrollTopComponent],
+  imports: [ScrollTopComponent,
+            RouterLink
+  ],
   templateUrl: './popular.component.html',
   styleUrl: './popular.component.css'
 })
