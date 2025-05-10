@@ -4,10 +4,15 @@ import { NowPlayingMovies } from '../../../Core/Interfaces/now-playing-movies';
 import { WatchlistMovieService } from '../../../Core/Services/WatchlistMovie.service';
 import { ToastrService } from 'ngx-toastr';
 import { ScrollTopComponent } from "../scroll-top/scroll-top.component";
+import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-now-playing-movies',
-  imports: [ScrollTopComponent],
+  imports: [ScrollTopComponent,
+    CommonModule,
+    RouterLink
+  ],
   templateUrl: './now-playing-movies.component.html',
   styleUrl: './now-playing-movies.component.css'
 })
@@ -47,5 +52,40 @@ export class NowPlayingMoviesComponent implements  OnInit {
       },
     });
   }
+
+
+    // this.activatedRoute.paramMap.subscribe({
+    //   next: (param) =>
+    //   {
+    //     this.movieId = param.get("id")
+    //     this.movieService.getDetailsUsingHttpClient(this.movieId).subscribe({
+    //     next: (res) =>
+    //     {
+    //         this.movie = res;
+    //         this.loading = false;
+    //         console.log(res)
+
+    //         if (this.movie.videos.results.length > 0) {
+    //           this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
+    //             `https://www.youtube.com/embed/${this.movie.videos.results[0].key}?autoplay=1&loop=1`
+    //           ) as string;
+    //         }
+
+    //     },
+    //     error: (err) =>
+    //     {
+    //       console.log(err)
+    //       this.loading = false;
+
+    //     }
+    // })
+    //   },
+    //   error : (err) =>
+    //   {
+    //     console.log(err)
+    //   }
+
+    // })
+  
 
 }
