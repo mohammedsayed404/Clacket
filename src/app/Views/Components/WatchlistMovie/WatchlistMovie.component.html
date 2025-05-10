@@ -7,9 +7,9 @@
 
   <div class="row g-4" *ngIf="WatchlistMovielist">
 
-    <div *ngFor="let movie of WatchlistMovielist" class="col-6 col-md-4 col-lg-3 cursor-pointer" [routerLink]="['/details' , movie.id]"  >
+    <div *ngFor="let movie of WatchlistMovielist" class="col-6 col-md-4 col-lg-3 cursor-pointer"  >
       <div class="card bg-dark text-white h-100">
-        <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" class="card-img-top" alt="Movie Poster"
+        <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" class="card-img-top" alt="Movie Poster" [routerLink]="['/details' , movie.id]"
           style="height: 300px; object-fit: cover; border-radius: 10px;" />
         <div class="card-body p-2 d-flex flex-column justify-content-between">
           <h6 class="card-title mb-2" style="font-size: 1rem;">{{ movie.original_title }}</h6>
