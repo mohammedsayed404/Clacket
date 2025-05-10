@@ -3,10 +3,13 @@ import { WatchlistMovieService } from '../../../Core/Services/WatchlistMovie.ser
 import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { IMovie } from '../../../Core/models/IMovie.interface';
+import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-watchlistmovie',
   templateUrl: './WatchlistMovie.component.html',
+  imports: [CommonModule,RouterLink],
   styleUrls: ['./WatchlistMovie.component.css']
 })
 export class WatchlistMovieComponent implements OnInit , OnDestroy {

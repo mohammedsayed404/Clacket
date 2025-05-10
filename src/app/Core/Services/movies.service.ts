@@ -103,5 +103,8 @@ ResetPagination(page:number){
 
 
 
+getMovieByCategory(categoryNumber:number): Observable<any> {
+  return this.http.get(`${this.apiUrl}/discover/movie?with_genres=${categoryNumber}`);
+}
 
 }

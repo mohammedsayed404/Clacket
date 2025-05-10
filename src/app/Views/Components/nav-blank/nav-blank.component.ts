@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit} from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild, viewChild} from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { WatchlistMovieService } from '../../../Core/Services/WatchlistMovie.service';
 
@@ -11,9 +11,36 @@ import { WatchlistMovieService } from '../../../Core/Services/WatchlistMovie.ser
 })
 export class NavBlankComponent implements OnInit {
 
+  constructor(private _router:Router,
+    private _watchlistMovieService:WatchlistMovieService , private _renderer2:Renderer2) { }
+
   watchlistCount:number = 0;
 
-  constructor(private _router:Router,private _watchlistMovieService:WatchlistMovieService) { }
+
+//   @ViewChild('navBlank') navBlank:ElementRef | undefined ;
+//   @HostListener('window:scroll', ['$event'])
+//   onWindowScroll(event: Event) {
+// this.toggleNavbarClass();
+
+//   }
+
+
+//   toggleNavbarClass(): void {
+//     const nav = this.navBlank?.nativeElement;
+//     const scrolled = window.scrollY > 20;
+
+//     if (scrolled) {
+//       this._renderer2.addClass(nav, 'navbar-fixed-animate');
+//       this._renderer2.removeClass(nav, 'navbar-large');
+//       this._renderer2.addClass(nav, 'px-5');
+//     } else {
+//       this._renderer2.removeClass(nav, 'navbar-fixed-animate');
+//       this._renderer2.addClass(nav, 'navbar-large');
+//       this._renderer2.removeClass(nav, 'px-5');
+//     }
+//   }
+
+
 
 
   ngOnInit(): void {

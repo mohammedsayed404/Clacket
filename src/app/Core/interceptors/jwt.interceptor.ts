@@ -1,13 +1,21 @@
 import { HttpInterceptorFn } from '@angular/common/http';
+import { API } from '../../API/API';
 
 export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
 
-  const token = localStorage.getItem('token');
+  if (req.url.includes(API.TMDBUrl)) {
+    req = req.clone({
+      headers: API.TMDB_Header_Token
+    });
+  }
 
-  if(token){
-    const request = req.clone({
-      headers: req.headers.set('Authorization', `Bearer ${token}`)
-    })
+  else if (req.url.includes(API.AuthUrl)) {
+    const jwt = localStorage.getItem('token');
+    if (jwt) {
+      req = req.clone({
+        headers: req.headers.set('Authorization', `Bearer ${jwt}`)
+      });
+    }
   }
 
   return next(req);

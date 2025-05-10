@@ -5,7 +5,7 @@ import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AccountService {
 

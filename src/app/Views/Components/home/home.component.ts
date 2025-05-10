@@ -6,15 +6,17 @@ import { ScrollTopComponent } from "../scroll-top/scroll-top.component";
 import { Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { TrendingMoviesSectionComponent } from '../trending-movies-section/trending-movies-section.component';
+import { IMovie } from '../../../Core/models/IMovie.interface';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, TrendingMoviesSectionComponent, ScrollTopComponent], 
+  imports: [CommonModule, TrendingMoviesSectionComponent, ScrollTopComponent , RouterLink],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit, OnDestroy {
- 
+
   constructor(
     private _mockMoviesService: MockMoviesService,
     private _watchlistMovieService: WatchlistMovieService,
@@ -22,9 +24,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   ) {}
 
   // trendingMovies: any[] = [];
-  popularMovies: any[] = [];
-  // loadingTrending: boolean = true;       
-  loadingPopular: boolean = true;      
+  popularMovies: IMovie[] = [];
+  // loadingTrending: boolean = true;
+  loadingPopular: boolean = true;
 
   // trendingMovieSubscribe: Subscription = new Subscription();
   popularMovieSubscribe: Subscription = new Subscription();
@@ -51,7 +53,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
   }
 
-  addToWatchList(movieId: number): void {  
+  addToWatchList(movieId: number): void {
     this.watchlistMovieSubscribe = this._watchlistMovieService.AddToWatchlist(movieId).subscribe({
       next: (response) => {
         console.log('Movie added to watchlist:', response);
@@ -68,6 +70,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     // this.trendingMovieSubscribe.unsubscribe();
     this.popularMovieSubscribe.unsubscribe();
-    this.watchlistMovieSubscribe.unsubscribe(); 
+    this.watchlistMovieSubscribe.unsubscribe();
   }
 }

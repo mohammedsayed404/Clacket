@@ -17,8 +17,6 @@ export class MockMoviesService {
   }
 
   GetPopularMovies(): Observable<any> {
-    return this._httpClient.get(`${API.TMDBUrl}/movie/popular`, {
-      headers: API.TMDB_Header_Token,
-    });
+    return this._httpClient.get(`${API.TMDBUrl}/movie/popular`);
   }
 }

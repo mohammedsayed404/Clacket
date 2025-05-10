@@ -15,6 +15,7 @@ import { MovieDetailsComponent } from './Views/Components/movie-details/movie-de
 import { MovieDetailComponent } from './Core/components/movie-detail/movie-detail.component';
 import { LandingPageComponent } from './Views/Components/landing-page/landing-page.component';
 import { MovieSearchComponent } from './Core/components/movie-search/movie-search.component';
+import { MovieCategoryComponent } from './Views/Components/movie-category/movie-category.component';
 
 
 export const routes: Routes = [
@@ -25,6 +26,7 @@ export const routes: Routes = [
       // {path:'', redirectTo:'home', pathMatch:'full'}, //I commented this line to avoid redirecting to home page when the app loads => [Salah]
       {path:'home', component:HomeComponent, title:'Home'},
       {path:'WatchlistMovie', component:WatchlistMovieComponent, title:'WatchlistMovie'},
+      {path:'movie-category/:id', component:MovieCategoryComponent, title:'Category'}, // i will change it later
       {path:'nowPlaying', component:NowPlayingMoviesComponent, title:'nowPlaying'},
       {path:'movie-search', component:MovieSearchComponent, title:'movie-search'},
       {path:'popular', component:PopularComponent, title:'popular'},
@@ -32,6 +34,7 @@ export const routes: Routes = [
       {path:'upcoming', component:UpcomingComponent, title:'upcoming'},
       {path:'details', component:MovieDetailsComponent, title:'details'},
       {path: 'details/:id', component:MovieDetailComponent, title:'details'},
+      {path: 'notFound', component:NotFoundComponent, title:'not found'},
       {path:'**', component: NotFoundComponent},
 
       //****Auth-Layout****
