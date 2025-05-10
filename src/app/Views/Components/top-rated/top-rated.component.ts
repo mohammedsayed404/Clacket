@@ -5,10 +5,13 @@ import { NowPlayingMovies } from '../../../Core/Interfaces/now-playing-movies';
 import { WatchlistMovieService } from '../../../Core/Services/WatchlistMovie.service';
 import { ToastrService } from 'ngx-toastr';
 import { ScrollTopComponent } from "../scroll-top/scroll-top.component";
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-top-rated',
-  imports: [ScrollTopComponent],
+  imports: [ScrollTopComponent,
+            RouterLink
+  ],
   templateUrl: './top-rated.component.html',
   styleUrl: './top-rated.component.css'
 })

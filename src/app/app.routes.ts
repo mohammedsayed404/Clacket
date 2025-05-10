@@ -11,7 +11,6 @@ import { NowPlayingMoviesComponent } from './Views/Components/now-playing-movies
 import { PopularComponent } from './Views/Components/popular/popular.component';
 import { TopRatedComponent } from './Views/Components/top-rated/top-rated.component';
 import { UpcomingComponent } from './Views/Components/upcoming/upcoming.component';
-import { MovieDetailsComponent } from './Views/Components/movie-details/movie-details.component';
 import { MovieDetailComponent } from './Core/components/movie-detail/movie-detail.component';
 import { LandingPageComponent } from './Views/Components/landing-page/landing-page.component';
 import { MovieSearchComponent } from './Core/components/movie-search/movie-search.component';
@@ -32,7 +31,7 @@ export const routes: Routes = [
       {path:'popular', component:PopularComponent, title:'popular'},
       {path:'topRated', component:TopRatedComponent, title:'topRated'},
       {path:'upcoming', component:UpcomingComponent, title:'upcoming'},
-      {path:'details', component:MovieDetailsComponent, title:'details'},
+      // {path:'details', component:MovieDetailsComponent, title:'details'},
       {path: 'details/:id', component:MovieDetailComponent, title:'details'},
       {path: 'notFound', component:NotFoundComponent, title:'not found'},
       {path:'**', component: NotFoundComponent},
