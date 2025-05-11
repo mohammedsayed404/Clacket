@@ -6,7 +6,7 @@
     <div class="content">
       <div class="movie-info">
         <div class="details">
-          <img mat-card-image [src]="movie.poster_path | tmdbImageUrl: 'w185'" alt="{{ movie.title }} Poster" class="movie-poster" />
+          <img mat-card-image src="{{(movie.poster_path | tmdbImageUrl: 'w185') || '/images/Clacket.jpg'}}" alt="{{ movie.title }} Poster" class="movie-poster" />
           <h1>{{ movie.title }}</h1>
           <p class="tagline" *ngIf="movie.tagline">“{{ movie.tagline }}”</p>
           <div class="meta">
