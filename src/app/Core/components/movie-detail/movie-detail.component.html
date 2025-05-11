@@ -1,8 +1,238 @@
 <div class="container">
   <div class="movie-detail" *ngIf="movie">
-    <div class="backdrop" [style.backgroundImage]="'url(' + (movie.backdrop_path | tmdbImageUrl) + ')'" >
+
+
+<!-- what happen here ??  -->
+
+    <!-- <div class="backdrop" [style.backgroundImage]="'url(' + (movie.backdrop_path | tmdbImageUrl) + ')'" >
       <div class="backdrop-overlay"></div>
-    </div>
+    </div> -->
+
+
+
+
+      <section class="hero-section" [ngStyle]="{
+        'background-image': 'url(' + (movie.backdrop_path | tmdbImageUrl) + ')' ,
+        'background-size': 'cover',
+        'background-position': 'center center',
+        'width': '100%',
+        }">
+            <div class="hero-overlay">
+                <h1 class="movie-title">{{ movie.title }}</h1>
+                <p class="movie-description">{{ movie.overview }}</p>
+                <div class="action-buttons">
+                    <button class="play-button">
+                        <img src="images/img_icon_1.svg" alt="Play">
+                        Play Now
+                    </button>
+                    <button class="action-icon-button">
+                        <img src="images/img_vector_12x12.svg" alt="Add to list">
+                    </button>
+                    <button class="action-icon-button">
+                        <img src="images/img_vector_18x19.svg" alt="Like">
+                    </button>
+                    <button class="action-icon-button">
+                        <img src="images/img_vector_17x19.svg" alt="Volume">
+                    </button>
+                </div>
+            </div>
+        </section>
+
+  <div class="content-container">
+            <div class="left-column">
+                <div class="info-card">
+                    <h2 class="info-card-title">Description</h2>
+                    <p class="info-card-content">{{ movie.overview }}</p>
+                </div>
+
+                <div class="info-card">
+                    <div class="cast-header">
+                        <h2 class="info-card-title">Cast</h2>
+                        <div class="cast-navigation">
+                            <button class="nav-button">
+                                <img src="images/img_vector_619.svg" alt="Previous">
+                            </button>
+                            <button class="nav-button">
+                                <img src="images/img_vector_12x15.svg" alt="Next">
+                            </button>
+                        </div>
+                    </div>
+                    <div class="cast-gallery">
+                        <img src="../assets/images/img_image_89x87.png" alt="Cast member" class="cast-image">
+                        <!-- <app-trending-movies-section></app-trending-movies-section> -->
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <!-- <div class="reviews-header">
+                        <h2 class="info-card-title">Reviews</h2>
+                        <button class="add-review-button">
+                            <img src="../assets/images/img_icon_2.svg" alt="Add">
+                            Add Your Review
+                        </button>
+                    </div>
+
+                    <div class="reviews-container">
+                        <div class="review-card">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <h3>Aniket Roy</h3>
+                                    <p class="reviewer-location">From India</p>
+                                </div>
+                                <div class="rating-badge">
+                                    <div class="star filled"></div>
+                                    <div class="star filled"></div>
+                                    <div class="star filled"></div>
+                                    <div class="star filled"></div>
+                                    <img src="../assets/images/img_shape.svg" alt="Half star" class="star">
+                                    <span class="rating-text">4.5</span>
+                                </div>
+                            </div>
+                            <p class="review-text">This movie was recommended to me by a very dear friend who went for the movie by herself. I went to the cinemas to watch but had a houseful board so couldn't watch it.</p>
+                        </div>
+
+                        <div class="review-card">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <h3>Swaraj</h3>
+                                    <p class="reviewer-location">From India</p>
+                                </div>
+                                <div class="rating-badge">
+                                    <div class="star filled"></div>
+                                    <div class="star filled"></div>
+                                    <div class="star filled"></div>
+                                    <div class="star filled"></div>
+                                    <div class="star filled"></div>
+                                    <span class="rating-text">5</span>
+                                </div>
+                            </div>
+                            <p class="review-text">A restless king promises his lands to the local tribals in exchange of a stone (Panjurli, a deity of Keradi Village) wherein he finds solace and peace of mind.</p>
+                        </div>
+                    </div>
+
+                    <div class="reviews-navigation">
+                        <button class="nav-button">
+                            <img src="../assets/images/img_vector_619.svg" alt="Previous">
+                        </button>
+                        <div class="indicators">
+                            <div class="indicator active"></div>
+                            <div class="indicator"></div>
+                            <div class="indicator"></div>
+                            <div class="indicator"></div>
+                        </div>
+                        <button class="nav-button">
+                            <img src="../assets/images/img_vector_12x15.svg" alt="Next">
+                        </button>
+                    </div> -->
+
+<div class="video-container">
+            <iframe
+              *ngIf="movie.videos.results.length > 0"
+              [src]="videoUrl"
+              class="movie-video"
+              frameborder="0"
+            ></iframe>
+          </div>
+
+                </div>
+            </div>
+
+            <div class="right-column">
+                <div class="info-card">
+                    <div class="detail-section">
+                        <div class="detail-header">
+                            <img src="../assets/images/img_icon_20x20.svg" alt="Calendar">
+                            <h3 class="detail-title">Released Year</h3>
+                        </div>
+                        <p class="detail-content">2022</p>
+                    </div>
+
+                    <div class="detail-section">
+                        <div class="detail-header">
+                            <img src="../assets/images/img_icon_3.svg" alt="Language">
+                            <h3 class="detail-title">Available Languages</h3>
+                        </div>
+                        <div class="language-tags">
+                            <span class="language-tag">English</span>
+                            <span class="language-tag">Hindi</span>
+                            <span class="language-tag">Tamil</span>
+                            <span class="language-tag">Telegu</span>
+                            <span class="language-tag">Kannada</span>
+                        </div>
+                    </div>
+
+                    <div class="detail-section">
+                        <div class="detail-header">
+                            <img src="/images/Rateing_icon_4.svg" alt="Star">
+                            <h3 class="detail-title mb-0">Ratings</h3>
+                        </div>
+                        <div class="ratings-container">
+                            <div class="rating-card">
+                                <h4 class="rating-source">IMDb</h4>
+                                <div class="stars-container">
+                                    <div class="star filled"></div>
+                                    <div class="star filled"></div>
+                                    <div class="star filled"></div>
+                                    <div class="star filled"></div>
+                                    <img src="images/rating.svg" alt="Half star" class="star">
+                                </div>
+                                <span class="rating-text">4.5</span>
+                            </div>
+
+                            <div class="rating-card">
+                                <h4 class="rating-source">Streamvibe</h4>
+                                <div class="stars-container">
+                              <div *ngFor="let star of [1,2,3,4,5]"
+                                                  class="star"
+                                                  [class.filled]="star <= (movie.vote_average / 2)"></div>
+                                    <div class="star" style="background-color: #999999;"></div>
+                                </div>
+                                <span class="rating-text">{{movie.vote_average.toFixed(1)}}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="detail-section">
+                        <div class="detail-header">
+                            <img src="/images/Geners.svg" alt="Genre">
+                            <h3 class="detail-title mb-0">Gernes</h3>
+                        </div>
+                        <div class="genre-tags">
+                          <ng-container *ngFor="let genre of movie.genres">
+                            <span class="genre-tag">{{genre.name}}</span>
+
+                          </ng-container>
+
+                        </div>
+                    </div>
+
+                    <div class="detail-section">
+                        <h3 class="detail-title">Director</h3>
+                        <div class="crew-card">
+                            <img src="{{getDirector()?.profile_path | tmdbImageUrl }}" alt="Rishab Shetty" class="crew-image">
+                            <div class="crew-info">
+                                <h4>{{getDirector()?.name}}</h4>
+                                <!-- <p class="crew-location">From India</p> -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="detail-section">
+                        <h3 class="detail-title">Music</h3>
+                        <div class="crew-card">
+                            <img src="{{getMusicain()?.profile_path | tmdbImageUrl }}" alt="B. Ajaneesh Loknath" class="crew-image">
+                            <div class="crew-info">
+                                <h4>{{getMusicain()?.name}}</h4>
+                                <!-- <p class="crew-location">From India</p> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
     <div class="content">
       <div class="movie-info">
         <div class="details">
@@ -52,10 +282,14 @@
         <app-cast-carousel [castList]="movie.credits.cast"></app-cast-carousel>
       </div>
     </div>
+
+
+
+
+
+
   </div>
-  <div class="loading" *ngIf="loading">
-    <mat-spinner></mat-spinner>
-    <p>Loading...</p>
-  </div>
+
   <button mat-raised-button color="primary" (click)="goBack()">Back</button>
 </div>
+

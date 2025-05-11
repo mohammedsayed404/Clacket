@@ -23,7 +23,7 @@ export const routes: Routes = [
   {path:'', canActivate:[authGuard], component:BlankLayoutComponent,
     children:[
       // {path:'', redirectTo:'home', pathMatch:'full'}, //I commented this line to avoid redirecting to home page when the app loads => [Salah]
-      {path:'home', component:HomeComponent, title:'Home'},
+      {path:'home', component:HomeComponent, title:'Clacket'},
       {path:'WatchlistMovie', component:WatchlistMovieComponent, title:'WatchlistMovie'},
       {path:'movie-category/:id', component:MovieCategoryComponent, title:'Category'}, // i will change it later
       {path:'nowPlaying', component:NowPlayingMoviesComponent, title:'nowPlaying'},

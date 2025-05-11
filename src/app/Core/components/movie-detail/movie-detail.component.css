@@ -24,9 +24,9 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding: 24px; 
-  color: #ffffff; 
-  background-image: linear-gradient(to right, var(--tw-gradient-stops)); 
+  padding: 24px;
+  color: #ffffff;
+  background-image: linear-gradient(to right, var(--tw-gradient-stops));
   background-color: #000000;
   max-width: 85.797vw !important;
   overflow: hidden;
@@ -42,8 +42,8 @@
 }
 .details h1 {
   font-size: 3.75rem;
-  line-height: 1; 
-  font-weight: 700; 
+  line-height: 1;
+  font-weight: 700;
   max-width: 100vw;
   width: 100%;
   gap: 8px;
@@ -52,11 +52,11 @@
   margin-top: 8px;
   display: block;
   padding-top: 1.5rem;
-  padding-bottom: 1.5rem; 
-  flex-wrap: wrap; 
+  padding-bottom: 1.5rem;
+  flex-wrap: wrap;
   width: 100%;
   font-size: 1.25rem;
-  line-height: 1.75rem; 
+  line-height: 1.75rem;
 }
 .video-container {
   padding-top: 56.25%; /* 16:9 aspect ratio */
@@ -69,3 +69,411 @@
     border-radius: 4px;
   }
 }
+
+   /* Hero Section */
+        .hero-section {
+            position: relative;
+            height: 709px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 0 80px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: linear-gradient(0deg, #141414 0%, rgba(20, 20, 20, 0) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            padding-bottom: 60px;
+        }
+
+        .movie-title {
+            font-size: 30px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .movie-description {
+            font-size: 16px;
+            color: #999999;
+            max-width: 969px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .play-button {
+            display: flex;
+            align-items: center;
+            background-color: #e50000;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 14px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .play-button img {
+            margin-right: 4px;
+        }
+
+        .action-icon-button {
+            width: 48px;
+            height: 48px;
+            background-color: #0f0f0f;
+            border: 1px solid #262626;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+ /* Content Sections */
+        .content-container {
+            display: flex;
+            gap: 20px;
+            margin: 20px 80px;
+        }
+
+        .left-column {
+            flex: 2;
+        }
+
+        .right-column {
+            flex: 1;
+        }
+
+        .info-card {
+            background-color: #1a1a1a;
+            border: 1px solid #262626;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            padding: 40px;
+        }
+
+        .info-card-title {
+            font-size: 16px;
+            font-weight: 500;
+            color: #999999;
+            margin-bottom: 10px;
+        }
+
+        .info-card-content {
+            font-size: 16px;
+            line-height: 24px;
+            color: #ffffff;
+        }
+ /* Content Sections */
+        .content-container {
+            display: flex;
+            gap: 20px;
+            margin: 20px 80px;
+        }
+
+        .left-column {
+            flex: 2;
+        }
+
+        .right-column {
+            flex: 1;
+        }
+
+        .info-card {
+            background-color: #1a1a1a;
+            border: 1px solid #262626;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            padding: 40px;
+        }
+
+        .info-card-title {
+            font-size: 16px;
+            font-weight: 500;
+            color: #999999;
+            margin-bottom: 10px;
+        }
+
+        .info-card-content {
+            font-size: 16px;
+            line-height: 24px;
+            color: #ffffff;
+        }
+
+        /* Cast Section */
+        .cast-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .cast-navigation {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-button {
+            width: 44px;
+            height: 44px;
+            background-color: #141414;
+            border: 1px solid #262626;
+            border-radius: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .cast-gallery {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            scrollbar-width: none; /* Firefox */
+            padding-bottom: 10px;
+        }
+
+        .cast-gallery::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Edge */
+        }
+
+        .cast-image {
+            width: 89px;
+            height: 87px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        /* Reviews Section */
+        .reviews-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .add-review-button {
+            display: flex;
+            align-items: center;
+            background-color: #141414;
+            border: 1px solid #262626;
+            border-radius: 6px;
+            padding: 12px;
+            color: white;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .add-review-button img {
+            margin-right: 4px;
+        }
+
+        .reviews-container {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+
+        .review-card {
+            background-color: #0f0f0f;
+            border: 1px solid #262626;
+            border-radius: 12px;
+            padding: 30px;
+            flex: 1;
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .reviewer-info h3 {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .reviewer-location {
+            font-size: 16px;
+            color: #999999;
+        }
+
+        .rating-badge {
+            background-color: #141414;
+            border: 1px solid #262626;
+            border-radius: 14px;
+            padding: 7px 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .star {
+            width: 14px;
+            height: 14px;
+            margin-right: 1px;
+        }
+
+        .star.filled {
+            background-color: #e50000;
+        }
+
+        .rating-text {
+            font-size: 14px;
+            color: #999999;
+            margin-left: 2px;
+        }
+
+        .review-text {
+            font-size: 16px;
+            line-height: 24px;
+            color: #999999;
+        }
+
+        .reviews-navigation {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .indicators {
+            display: flex;
+            gap: 5px;
+        }
+
+        .indicator {
+            width: 20px;
+            height: 4px;
+            background-color: #262626;
+            border-radius: 2px;
+        }
+
+        .indicator.active {
+            background-color: #e50000;
+        }
+
+        /* Details Card */
+        .detail-section {
+            margin-bottom: 20px;
+        }
+
+        .detail-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .detail-header img {
+            margin-right: 2px;
+        }
+
+        .detail-title {
+            font-size: 16px;
+            color: #999999;
+        }
+
+        .detail-content {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .language-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .language-tag {
+            background-color: #141414;
+            border: 1px solid #262626;
+            border-radius: 6px;
+            padding: 6px 12px;
+            font-size: 14px;
+            color: white;
+        }
+
+        .ratings-container {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .rating-card {
+            background-color: #141414;
+            border: 1px solid #262626;
+            border-radius: 8px;
+            padding: 14px;
+            width: 160px;
+        }
+
+        .rating-source {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 7px;
+        }
+
+        .stars-container {
+            display: flex;
+            margin-bottom: 5px;
+        }
+
+        .genre-tags {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .genre-tag {
+            background-color: #141414;
+            border: 1px solid #262626;
+            border-radius: 6px;
+            padding: 6px 12px;
+            font-size: 14px;
+            color: white;
+        }
+
+        .crew-card {
+            background-color: #141414;
+            border: 1px solid #262626;
+            border-radius: 8px;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .crew-image {
+            width: 50px;
+            height: 47px;
+            border-radius: 6px;
+            margin-right: 15px;
+        }
+
+        .crew-info h4 {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+
+        .crew-location {
+            font-size: 14px;
+            color: #999999;
+        }
