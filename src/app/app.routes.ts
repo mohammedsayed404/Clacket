@@ -22,7 +22,9 @@ import { TopTenComponent } from './Views/Components/top-ten/top-ten.component';
 export const routes: Routes = [
 
   //****Blank-Layout****
-  {path:'', canActivate:[authGuard], component:BlankLayoutComponent,
+  {   path: '',
+    canActivate:[authGuard],
+    component: BlankLayoutComponent,
     children:[
       {path:'', redirectTo:'home', pathMatch:'full'}, //I commented this line to avoid redirecting to home page when the app loads => [Salah]
       {path:'home', component:HomeComponent, title:'Clacket'},
@@ -39,16 +41,16 @@ export const routes: Routes = [
       {path: 'details/:id', component:MovieDetailComponent, title:'details'},
       {path: 'notFound', component:NotFoundComponent, title:'not found'},
 
-      //****Auth-Layout****
-      {path: '',component: AuthLayoutComponent,
-        children: [
-          { path: '', component: LandingPageComponent, title: 'Welcome' },
-          { path: 'login', component: LoginComponent, title: 'Login' },
-          { path: 'register', component: RegisterComponent, title: 'Register' },
-        ]
-      },
     ]},
 
+    //****Auth-Layout****
+    {path: '',component: AuthLayoutComponent,
+      children: [
+        { path: '', component: LandingPageComponent, title: 'Welcome' },
+        { path: 'login', component: LoginComponent, title: 'Login' },
+        { path: 'register', component: RegisterComponent, title: 'Register' },
+      ]
+    },
 //****NotFound [General]****
 { path: '**', component: NotFoundComponent }
 
