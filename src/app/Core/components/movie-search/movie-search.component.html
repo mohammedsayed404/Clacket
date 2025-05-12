@@ -1,9 +1,10 @@
-<main class="movie-page">
+<div class="container-fluid">
+  <main class="movie-page">
     <header class="page-header">
       <h1>Movies</h1>
-      <nav class="filter-nav">
+      <nav class="filter-nav justify-content-center">
         @for (option of sortOptions; track option.value) {
-          <button 
+          <button
             [class.active]="currentFilter() === option.value"
             (click)="loadMovies(option.value)">
             {{ option.label }}
@@ -17,115 +18,111 @@
             placeholder="Search movies by name..."
             (keyup.enter)="onSearch()">
         </div>
-      
+
       </nav>
     </header>
     <header>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Movies</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                @for (option of sortOptions; track option.value) {
-                    <li class="nav-item">
-                    <a class="nav-link"  
-                      [class.active]="currentFilter() === option.value"
-                      (click)="loadMovies(option.value)">{{ option.label }}</a>
-                    </li>
-                  }
-            </ul>
-            <div class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search movies by name..." 
-              aria-label="Search"
-              [(ngModel)]="searchTerm"
-              (keyup.enter)="onSearch()">
-              <a class="btn btn-outline-success" onclick="onSearch()">Search</a>
-            </div>
-          </div>
-        </div>
-      </nav>
+
     </header>
     <br>
     <section class="movie-grid-container">
       @if (isLoading()) {
         <div class="loading-spinner">Loading...</div>
       }
-  
+
       @if (error()) {
         <div class="error-message">{{ error() }}</div>
       }
       @if (activeTab() === 'search'){
-        <div class="movie-grid">
+        <div class="row">
             @for (movie of searchResults(); track movie.id) {
-              <a [routerLink]="['/movie', movie.id]" class="movie-card">
-                <img 
-                  [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" 
-                  [alt]="movie.title"
-                  class="movie-poster">
-                <div class="movie-info">
-                  <h3>{{ movie.title }}</h3>
-                  <p>{{ movie.release_date | date: 'yyyy' }}</p>
-                  <div class="rating">
-                    <span class="star">★</span>
-                    <span>{{ movie.vote_average | number: '1.1-1' }}</span>
-                  </div>
+      <div class="col-md-3 ">
+          <div class="card content-card text-white cursor-pointer " [routerLink]="['/details' , movie.id]">
+            <img [src]="movie.poster_path | tmdbImageUrl" class="card-img-top content-image" [alt]="movie.title">
+            <div class="card-body p-3">
+              <div class="d-flex justify-content-between align-items-center content-meta mt-3 mb-0">
+                <div class="d-flex align-items-center meta-item  rounded-1 " style="background-color:#141414 ;">
+                  <span class="meta-text cursor-pointer">
+                    <span *ngIf="WatchlistMovielist.includes(movie.id)" (click)="RemoveFromWatchlist(movie.id)"
+                    class="action-icon-button p-3 d-flex justify-content-center align-items-center " style="background-color: #630303;">
+                    <i class="fa-solid fa-minus text-white "></i>
+                  </span>
+                  <span *ngIf="!WatchlistMovielist.includes(movie.id)" (click)="addToWatchList(movie.id)"
+                  class="action-icon-button p-3 d-flex justify-content-center align-items-center ">
+                    <img src="images/img_vector_12x12.svg" alt="Add to list">
+                    </span>
+                  </span>
                 </div>
-              </a>
+                <div class="d-flex align-items-center meta-item  rounded-1 p-1" style="background-color:#141414 ;">
+                  <img src="/images/Rateing_icon_4.svg" alt="Views" class="me-2" width="20" height="20">
+                  <span class="meta-text">{{ movie.vote_average | number: '1.1-1'  }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
             }
         </div>
           @if (searchResults().length === 0 && searchQuery()) {
             <div class="no-results">No movies found for "{{ searchQuery() }}"</div>
           }
       }@else{
-        <div class="movie-grid">
+        <div class="row g-4">
             @for (movie of movies(); track movie.id) {
-              <a [routerLink]="['/movie', movie.id]" class="movie-card">
-                <img 
-                  [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" 
-                  [alt]="movie.title"
-                  class="movie-poster">
-                <div class="movie-info">
-                  <h3>{{ movie.title }}</h3>
-                  <p>{{ movie.release_date | date: 'yyyy' }}</p>
-                  <div class="rating">
-                    <span class="star">★</span>
-                    <span>{{ movie.vote_average | number: '1.1-1' }}</span>
-                  </div>
+          <div class="col-md-3 ">
+          <div class="card content-card text-white cursor-pointer " [routerLink]="['/details' , movie.id]">
+            <img [src]="movie.poster_path | tmdbImageUrl" class="card-img-top content-image" [alt]="movie.title">
+            <div class="card-body p-3">
+              <div class="d-flex justify-content-between align-items-center content-meta mt-3 mb-0">
+                <div class="d-flex align-items-center meta-item  rounded-1 " style="background-color:#141414 ;">
+                  <span class="meta-text cursor-pointer">
+                    <span *ngIf="WatchlistMovielist.includes(movie.id)" (click)="RemoveFromWatchlist(movie.id)"
+                    class="action-icon-button p-3 d-flex justify-content-center align-items-center " style="background-color: #630303;">
+                    <i class="fa-solid fa-minus text-white "></i>
+                  </span>
+                  <span *ngIf="!WatchlistMovielist.includes(movie.id)" (click)="addToWatchList(movie.id)"
+                  class="action-icon-button p-3 d-flex justify-content-center align-items-center ">
+                    <img src="images/img_vector_12x12.svg" alt="Add to list">
+                    </span>
+                  </span>
                 </div>
-              </a>
+                <div class="d-flex align-items-center meta-item  rounded-1 p-1" style="background-color:#141414 ;">
+                  <img src="/images/Rateing_icon_4.svg" alt="Views" class="me-2" width="20" height="20">
+                  <span class="meta-text">{{ movie.vote_average | number: '1.1-1'  }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
             }
         </div>
       }
     </section>
   </main>
-  <footer>
-    <nav aria-label="Page navigation" *ngIf="totalPages() >= 1">
-      <ul class="pagination justify-content-center">
-        <li class="page-item" [class.disabled]="currentPage() === 1">
-          <a class="page-link" (click)="changePage(1)">First</a>
-        </li>
-        <li class="page-item" [class.disabled]="currentPage() === 1">
-          <a class="page-link" (click)="changePage(currentPage() - 1)">Previous</a>
-        </li>
-        
-        @for (page of getPages(); track page) {
-          <li class="page-item" [class.active]="page === currentPage()">
-            <a class="page-link" (click)="changePage(page)">{{ page }}</a>
-          </li>
-        }
+<footer class="custom-footer mt-5 pt-4">
+  <nav aria-label="Page navigation" *ngIf="totalPages() >= 1">
+    <ul class="pagination justify-content-center flex-wrap gap-2">
+      <li class="page-item" [class.disabled]="currentPage() === 1">
+        <a class="page-link" (click)="changePage(1)">First</a>
+      </li>
+      <li class="page-item" [class.disabled]="currentPage() === 1">
+        <a class="page-link" (click)="changePage(currentPage() - 1)">Previous</a>
+      </li>
 
-        <li class="page-item" [class.disabled]="currentPage() === totalPages()">
-          <a class="page-link" (click)="changePage(currentPage() + 1)">Next</a>
+      @for (page of getPages(); track page) {
+        <li class="page-item" [class.active]="page === currentPage()">
+          <a class="page-link" (click)="changePage(page)">{{ page }}</a>
         </li>
-        <li class="page-item" [class.disabled]="currentPage() === totalPages()">
-          <a class="page-link" (click)="changePage(totalPages())">Last</a>
-        </li>
-      </ul>
-      <!-- <div class="text-center text-muted">
-        Page {{ currentPage() }} of {{ totalPages() }} ({{ totalResults() }} results)
-      </div> -->
-    </nav>
-  </footer>
+      }
+
+      <li class="page-item" [class.disabled]="currentPage() === totalPages()">
+        <a class="page-link" (click)="changePage(currentPage() + 1)">Next</a>
+      </li>
+      <li class="page-item" [class.disabled]="currentPage() === totalPages()">
+        <a class="page-link" (click)="changePage(totalPages())">Last</a>
+      </li>
+    </ul>
+  </nav>
+</footer>
+</div>
+

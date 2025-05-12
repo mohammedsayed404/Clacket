@@ -19,4 +19,10 @@ export class MockMoviesService {
   GetPopularMovies(): Observable<any> {
     return this._httpClient.get(`${API.TMDBUrl}/movie/popular`);
   }
+
+  GetTopTenByGeners(categoryNumber:number):Observable<any>{
+    return this._httpClient.get(`${API.TMDBUrl}/discover/movie?&sort_by=vote_average.desc&with_genres=${categoryNumber}&page=1`);
+}
+
+
 }

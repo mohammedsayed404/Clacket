@@ -29,6 +29,7 @@
     "@tailwindcss/postcss": "^4.1.4",
     "bootstrap": "^5.3.5",
     "bootstrap-icons": "^1.12.1",
+    "ngx-owl-carousel-o": "^19.0.2",
     "ngx-paypal": "^11.0.0",
     "ngx-spinner": "^19.0.0",
     "ngx-toastr": "^19.0.0",

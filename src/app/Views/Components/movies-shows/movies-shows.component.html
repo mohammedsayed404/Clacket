@@ -1,0 +1,206 @@
+<section class="mb-5">
+  <owl-carousel-o #popularMoviesCarousel [options]="popularMoviesSliderOptions">
+    @for (movie of popularMovies; track movie.id) {
+    <ng-template carouselSlide>
+      <section class="hero" [ngStyle]="{
+        'background-image': 'url(' + (movie.backdrop_path | tmdbImageUrl) + ')' ,
+        'background-size': 'cover',
+        'background-position': 'center',
+        'width': '100%',
+        }">
+        <div class="hero-overlay">
+          <h1 class="hero-title">{{movie.title}}</h1>
+          <p class="hero-description">{{movie.overview}}</p>
+        </div>
+      </section>
+    </ng-template>
+    }
+  </owl-carousel-o>
+
+</section>
+
+<section class="mb-5">
+  <div class="d-flex justify-content-between">
+    <h2 class="text-white fw-bolder ms-2">Our Genres</h2>
+  </div>
+  <app-genres></app-genres>
+</section>
+
+
+<section class="mb-5">
+  <div class="d-flex justify-content-between">
+    <h2 class="text-white fw-bolder ms-2">Popular Top 10 In Genres</h2>
+  </div>
+  <div class="categories-grid ">
+    <div class="category-card position-relative ">
+      <div class="category-images">
+        <div class="category-image">
+          <img src="images/img_image_102x93.png" alt="Action movie">
+        </div>
+        <div class="category-image">
+          <img src="images/img_image_35.png" alt="Action movie">
+        </div>
+        <div class="category-image">
+          <img src="images/img_image_36.png" alt="Action movie">
+        </div>
+        <div class="category-image">
+          <img src="images/img_image_37.png" alt="Action movie">
+        </div>
+        <div class="category-overlay">
+          <div class="vote p-2 fw-bolder position-absolute top-0 bg-danger" style="left: 0;">Top 10</div>
+        </div>
+      </div>
+      <div class="category-footer">
+        <h3 class="category-title ">Action</h3>
+        <img src="images/img_icon_2.svg" [routerLink]="['/top-ten', 28]" class="cursor-pointer" alt="Arrow">
+      </div>
+    </div>
+
+    <div class="category-card position-relative">
+      <div class="category-images">
+        <div class="category-image">
+          <img src="images/img_image_38.png" alt="Adventure movie">
+        </div>
+        <div class="category-image">
+          <img src="images/img_image_39.png" alt="Adventure movie">
+        </div>
+        <div class="category-image">
+          <img src="images/img_image_40.png" alt="Adventure movie">
+        </div>
+        <div class="category-image">
+          <img src="images/img_image_41.png" alt="Adventure movie">
+        </div>
+        <div class="category-overlay">
+          <div class="vote p-2 fw-bolder position-absolute top-0 bg-danger" style="left: 0;">Top 10</div>
+        </div>
+      </div>
+      <div class="category-footer">
+        <h3 class="category-title">Adventure</h3>
+        <img src="images/img_icon_2.svg" [routerLink]="['/top-ten', 12]" class="cursor-pointer" alt="Arrow">
+      </div>
+    </div>
+
+    <div class="category-card position-relative">
+      <div class="category-images">
+        <div class="category-image">
+          <img src="images/img_image_42.png" alt="Comedy movie">
+        </div>
+        <div class="category-image">
+          <img src="images/img_image_43.png" alt="Comedy movie">
+        </div>
+        <div class="category-image">
+          <img src="images/img_image_44.png" alt="Comedy movie">
+        </div>
+        <div class="category-image">
+          <img src="images/img_image_45.png" alt="Comedy movie">
+        </div>
+        <div class="category-overlay">
+          <div class="vote p-2 fw-bolder position-absolute top-0 bg-danger" style="left: 0;">Top 10</div>
+        </div>
+      </div>
+      <div class="category-footer">
+        <h3 class="category-title">Comedy</h3>
+        <img src="images/img_icon_2.svg" [routerLink]="['/top-ten', 35]" class="cursor-pointer" alt="Arrow">
+      </div>
+    </div>
+
+    <div class="category-card position-relative">
+      <div class="category-images">
+        <div class="category-image">
+          <img src="images/img_image_46.png" alt="Drama movie">
+        </div>
+        <div class="category-image">
+          <img src="images/img_image_47.png" alt="Drama movie">
+        </div>
+        <div class="category-image">
+          <img src="images/img_image_48.png" alt="Drama movie">
+        </div>
+        <div class="category-image">
+          <img src="images/img_image_49.png" alt="Drama movie">
+        </div>
+        <div class="category-overlay">
+          <div class="vote p-2 fw-bolder position-absolute top-0 bg-danger" style="left: 0;">Top 10</div>
+        </div>
+      </div>
+      <div class="category-footer">
+        <h3 class="category-title">Drama</h3>
+        <img src="images/img_icon_2.svg" [routerLink]="['/top-ten', 18]" class="cursor-pointer" alt="Arrow">
+      </div>
+    </div>
+
+    <div class="category-card position-relative">
+      <div class="category-images">
+        <div class="category-image">
+          <img src="images/img_image_50.png" alt="Horror movie">
+        </div>
+        <div class="category-image">
+          <img src="images/img_image_51.png" alt="Horror movie">
+        </div>
+        <div class="category-image">
+          <img src="images/img_image_52.png" alt="Horror movie">
+        </div>
+        <div class="category-image">
+          <img src="images/img_image_53.png" alt="Horror movie">
+        </div>
+        <div class="category-overlay">
+          <div class="vote p-2 fw-bolder position-absolute top-0 bg-danger" style="left: 0;">Top 10</div>
+        </div>
+      </div>
+      <div class="category-footer">
+        <h3 class="category-title">Horror</h3>
+        <img src="images/img_icon_2.svg" [routerLink]="['/top-ten', 27]" class="cursor-pointer" alt="Arrow">
+      </div>
+    </div>
+  </div>
+
+</section>
+
+
+<section class="mb-5">
+  <div class="d-flex justify-content-between">
+    <h2 class="text-white fw-bolder ms-2">Trending Now</h2>
+    <app-navigation-controls [CarouselName]="trendingMoviesCarousel"></app-navigation-controls>
+  </div>
+
+
+  <div class="row justify-content-center">
+    <owl-carousel-o #trendingMoviesCarousel [options]="trendingMoviesSliderOptions">
+      @for (movie of trendingMovies; track movie.id) {
+      <ng-template carouselSlide>
+        <div [routerLink]="['/details' , movie.id]" class="cursor-pointer">
+          <div class="card content-card text-white ">
+            <img [src]="movie.poster_path | tmdbImageUrl" class="card-img-top content-image" [alt]="movie.title">
+            <div class="card-body p-3">
+              <div class="d-flex justify-content-between align-items-center content-meta mt-3 mb-0">
+                <div class="d-flex align-items-center meta-item  rounded-1 " style="background-color:#141414 ;">
+                  <span class="meta-text cursor-pointer">
+                    <span *ngIf="WatchlistMovielist.includes(movie.id)" (click)="RemoveFromWatchlist(movie.id)"
+                    class="action-icon-button p-3 d-flex justify-content-center align-items-center " style="background-color: #630303;">
+                    <i class="fa-solid fa-minus text-white "></i>
+                  </span>
+                  <span *ngIf="!WatchlistMovielist.includes(movie.id)" (click)="addToWatchList(movie.id)"
+                  class="action-icon-button p-3 d-flex justify-content-center align-items-center ">
+                    <img src="images/img_vector_12x12.svg" alt="Add to list">
+                    </span>
+                  </span>
+                </div>
+                <div class="d-flex align-items-center meta-item  rounded-1 p-1" style="background-color:#141414 ;">
+                  <img src="images/view.svg" alt="Views" class="me-2" width="20" height="20">
+                  <span class="meta-text">{{ movie.popularity ? movie.popularity.toFixed(1) : '0.0' }}K</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+      }
+    </owl-carousel-o>
+  </div>
+
+
+</section>
+
+<section>
+<app-List-Search></app-List-Search>
+
+</section>

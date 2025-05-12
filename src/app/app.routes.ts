@@ -15,6 +15,8 @@ import { MovieDetailComponent } from './Core/components/movie-detail/movie-detai
 import { LandingPageComponent } from './Views/Components/landing-page/landing-page.component';
 import { MovieSearchComponent } from './Core/components/movie-search/movie-search.component';
 import { MovieCategoryComponent } from './Views/Components/movie-category/movie-category.component';
+import { MoviesShowsComponent } from './Views/Components/movies-shows/movies-shows.component';
+import { TopTenComponent } from './Views/Components/top-ten/top-ten.component';
 
 
 export const routes: Routes = [
@@ -24,8 +26,10 @@ export const routes: Routes = [
     children:[
       // {path:'', redirectTo:'home', pathMatch:'full'}, //I commented this line to avoid redirecting to home page when the app loads => [Salah]
       {path:'home', component:HomeComponent, title:'Clacket'},
+      {path:'movies-show', component:MoviesShowsComponent, title:'Movies&Shows'},
       {path:'WatchlistMovie', component:WatchlistMovieComponent, title:'WatchlistMovie'},
       {path:'movie-category/:id', component:MovieCategoryComponent, title:'Category'}, // i will change it later
+      {path:'top-ten/:id', component:TopTenComponent, title:'TopTen'}, // i will change it later
       {path:'nowPlaying', component:NowPlayingMoviesComponent, title:'nowPlaying'},
       {path:'movie-search', component:MovieSearchComponent, title:'movie-search'},
       {path:'popular', component:PopularComponent, title:'popular'},

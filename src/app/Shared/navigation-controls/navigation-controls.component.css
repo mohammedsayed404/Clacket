@@ -1,0 +1,43 @@
+ .navigation-controls {
+            display: flex;
+            gap: 12px;
+            background-color: #0f0f0f;
+            border: 1px solid #1e1e1e;
+            border-radius: 10px;
+            padding: 12px;
+        }
+
+        .nav-control {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #1a1a1a;
+            border: 1px solid #1e1e1e;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .nav-control:hover {
+            background-color: #262626;
+        }
+
+        .nav-indicators {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0 12px;
+        }
+
+        .indicator {
+            width: 8px;
+            height: 4px;
+            background-color: #333;
+            border-radius: 2px;
+        }
+
+        .indicator.active {
+            width: 20px;
+            background-color: #e50000;
+        }

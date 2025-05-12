@@ -1,23 +1,24 @@
-import { Component, OnInit } from '@angular/core';
-import { MoviesService } from '../../../Core/Services/movies.service';
-import { WatchlistMovieService } from '../../../Core/Services/WatchlistMovie.service';
+import { Component } from '@angular/core';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { IMovie } from '../../../Core/models/IMovie.interface';
-import { Movie } from '../../../Core/Interfaces/Movie';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { MoviesService } from '../../../Core/Services/movies.service';
+import { WatchlistMovieService } from '../../../Core/Services/WatchlistMovie.service';
+import { MockMoviesService } from '../../../Core/Services/MockMovies.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-movie-category',
+  selector: 'app-top-ten',
   imports: [CommonModule,RouterLink],
-  templateUrl: './movie-category.component.html',
-  styleUrl: './movie-category.component.css'
+  templateUrl: './top-ten.component.html',
+  styleUrl: './top-ten.component.css'
 })
-export class MovieCategoryComponent implements OnInit {
- movielist: IMovie[] | undefined;
+export class TopTenComponent {
+
+topTenByGeners: IMovie[] | undefined;
  categoryId: number = 0;
     constructor(
-      private _moviesService: MoviesService,
+      private _mockMoviesService: MockMoviesService,
       private _watchlistMovieService: WatchlistMovieService,
       private _toastr: ToastrService,
       private _activatedRoute: ActivatedRoute
@@ -25,25 +26,22 @@ export class MovieCategoryComponent implements OnInit {
   ngOnInit(): void {
         this.categoryId = Number(this._activatedRoute.snapshot.paramMap.get('id'));
         console.log(this.categoryId);
-        this.getMovieByCategory(this.categoryId);
+        this.getTopTenByGeners(this.categoryId);
   }
 
 
 
-getMovieByCategory(categoryNumber:number): void {
-     this._moviesService.getMovieByCategory(categoryNumber).subscribe({
-      next: ({results}) => {
-        this.movielist = results;
-        console.log('Movies Category:', this.movielist);
-        },
-      error: (err) => {
-        console.error('Error fetching popular movies:', err);
-      },
-    });
-  }
+getTopTenByGeners(categoryNumber:number):void{
+  this._mockMoviesService.GetTopTenByGeners(categoryNumber).subscribe({
+    next: ({ results }) => {
+      this.topTenByGeners = results;
+      console.log('top 10  Movies:', this.topTenByGeners);
+    },
+  });
+}
 
 
-    addToWatchList(movieId: number): void {
+addToWatchList(movieId: number): void {
     this._watchlistMovieService.AddToWatchlist(movieId).subscribe({
       next: (response) => {
         console.log('Movie added to watchlist:', response);
@@ -56,6 +54,7 @@ getMovieByCategory(categoryNumber:number): void {
       },
     });
   }
+
 
 
 }

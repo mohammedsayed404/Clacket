@@ -70,10 +70,6 @@ body {
   border: none;
 }
 
-.btn-primary {
-  background-color: #e50000;
-  color: #ffffff;
-}
 
 
 
@@ -248,4 +244,112 @@ body {
             top: 50%;
             transform: translateY(-50%);
             z-index: 2;
+        }
+
+
+/*Controler bar */
+
+.navigation-controls {
+            display: flex;
+            gap: 12px;
+            background-color: #0f0f0f;
+            border: 1px solid #1e1e1e;
+            border-radius: 10px;
+            padding: 12px;
+        }
+
+        .nav-control {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #1a1a1a;
+            border: 1px solid #1e1e1e;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .nav-control:hover {
+            background-color: #262626;
+        }
+
+        .nav-indicators {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0 12px;
+        }
+
+        .indicator {
+            width: 8px;
+            height: 4px;
+            background-color: #333;
+            border-radius: 2px;
+        }
+
+        .indicator.active {
+            width: 20px;
+            background-color: #e50000;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+        }
+
+        .category-card {
+            background-color: #1a1a1a;
+            border: 1px solid #262626;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .category-images {
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 10px;
+            padding: 24px;
+        }
+
+        .category-image {
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .category-image img {
+            width: 100%;
+            height: 93px;
+            object-fit: cover;
+        }
+
+        .category-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 24px;
+            right: 24px;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(26, 26, 26, 0) 0%, rgba(26, 26, 26, 1) 100%);
+        }
+
+        .category-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 24px 24px;
+        }
+
+        .category-title {
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 22px;
+            color: #ffffff;
         }

@@ -187,8 +187,8 @@
         </div>
 
         <div class="hero-content">
-            <h1 class="hero-title">The Best Streaming Experience</h1>
-            <p class="hero-description">StreamVibe is the best streaming experience for watching your favorite movies and shows on demand, anytime, anywhere. With StreamVibe, you can enjoy a wide variety of content, including the latest blockbusters, classic movies, popular TV shows, and more. You can also create your own watchlists, so you can easily find the content you want to watch.</p>
+            <h1 class="hero-title fw-bolder">The Best Streaming Experience</h1>
+            <p class="hero-description fw-bolder">Clacket is the best streaming experience for watching your favorite movies and shows on demand, anytime, anywhere. With StreamVibe, you can enjoy a wide variety of content, including the latest blockbusters, classic movies, popular TV shows, and more. You can also create your own watchlists, so you can easily find the content you want to watch.</p>
             <button class="btn btn-primary">
                 <img src="images/img_icon_1.svg" alt="Play icon" class="btn-icon">
                 Start Watching Now
@@ -203,132 +203,10 @@
                     <h2 class="section-title">Explore our wide variety of categories</h2>
                     <p class="section-subtitle">Whether you're looking for a comedy to make you laugh, a drama to make you think, or a documentary to learn something new</p>
                 </div>
-
-
-                <div class="navigation-controls">
-                    <div class="nav-control">
-                        <img src="images/img_vector_619.svg" alt="Previous">
-                    </div>
-                    <div class="nav-indicators">
-                        <img src="images/img_indicators_container.svg" alt="Indicators">
-                    </div>
-                    <div class="nav-control">
-                        <img src="images/img_vector.svg" alt="Next">
-                    </div>
-                </div>
+                <app-navigation-controls></app-navigation-controls>
             </div>
 
-            <div class="categories-grid">
-                <div class="category-card">
-                    <div class="category-images">
-                        <div class="category-image">
-                            <img src="images/img_image_102x93.png" alt="Action movie">
-                        </div>
-                        <div class="category-image">
-                            <img src="images/img_image_35.png" alt="Action movie">
-                        </div>
-                        <div class="category-image">
-                            <img src="images/img_image_36.png" alt="Action movie">
-                        </div>
-                        <div class="category-image">
-                            <img src="images/img_image_37.png" alt="Action movie">
-                        </div>
-                        <div class="category-overlay"></div>
-                    </div>
-                    <div class="category-footer">
-                        <h3 class="category-title ">Action</h3> <!-- action 28 -->
-                        <img src="images/img_icon_2.svg" [routerLink]="['/movie-category', 28]" class="cursor-pointer" alt="Arrow">
-                    </div>
-                </div>
-
-                <div class="category-card">
-                    <div class="category-images">
-                        <div class="category-image">
-                            <img src="images/img_image_38.png" alt="Adventure movie">
-                        </div>
-                        <div class="category-image">
-                            <img src="images/img_image_39.png" alt="Adventure movie">
-                        </div>
-                        <div class="category-image">
-                            <img src="images/img_image_40.png" alt="Adventure movie">
-                        </div>
-                        <div class="category-image">
-                            <img src="images/img_image_41.png" alt="Adventure movie">
-                        </div>
-                        <div class="category-overlay"></div>
-                    </div>
-                    <div class="category-footer">
-                        <h3 class="category-title">Adventure</h3>
-                        <img src="images/img_icon_2.svg" [routerLink]="['/movie-category', 12]" class="cursor-pointer" alt="Arrow">
-                    </div>
-                </div>
-
-                <div class="category-card">
-                    <div class="category-images">
-                        <div class="category-image">
-                            <img src="images/img_image_42.png" alt="Comedy movie">
-                        </div>
-                        <div class="category-image">
-                            <img src="images/img_image_43.png" alt="Comedy movie">
-                        </div>
-                        <div class="category-image">
-                            <img src="images/img_image_44.png" alt="Comedy movie">
-                        </div>
-                        <div class="category-image">
-                            <img src="images/img_image_45.png" alt="Comedy movie">
-                        </div>
-                        <div class="category-overlay"></div>
-                    </div>
-                    <div class="category-footer">
-                        <h3 class="category-title">Comedy</h3>
-                        <img src="images/img_icon_2.svg" [routerLink]="['/movie-category', 35]" class="cursor-pointer" alt="Arrow">
-                    </div>
-                </div>
-
-                <div class="category-card">
-                    <div class="category-images">
-                        <div class="category-image">
-                            <img src="images/img_image_46.png" alt="Drama movie">
-                        </div>
-                        <div class="category-image">
-                            <img src="images/img_image_47.png" alt="Drama movie">
-                        </div>
-                        <div class="category-image">
-                            <img src="images/img_image_48.png" alt="Drama movie">
-                        </div>
-                        <div class="category-image">
-                            <img src="images/img_image_49.png" alt="Drama movie">
-                        </div>
-                        <div class="category-overlay"></div>
-                    </div>
-                    <div class="category-footer">
-                        <h3 class="category-title">Drama</h3>
-                        <img src="images/img_icon_2.svg" [routerLink]="['/movie-category', 18]" class="cursor-pointer" alt="Arrow">
-                    </div>
-                </div>
-
-                <div class="category-card">
-                    <div class="category-images">
-                        <div class="category-image">
-                            <img src="images/img_image_50.png" alt="Horror movie">
-                        </div>
-                        <div class="category-image">
-                            <img src="images/img_image_51.png" alt="Horror movie">
-                        </div>
-                        <div class="category-image">
-                            <img src="images/img_image_52.png" alt="Horror movie">
-                        </div>
-                        <div class="category-image">
-                            <img src="images/img_image_53.png" alt="Horror movie">
-                        </div>
-                        <div class="category-overlay"></div>
-                    </div>
-                    <div class="category-footer">
-                        <h3 class="category-title">Horror</h3>
-                        <img src="images/img_icon_2.svg" [routerLink]="['/movie-category', 27]" class="cursor-pointer" alt="Arrow">
-                    </div>
-                </div>
-            </div>
+         <app-genres></app-genres>
         </div>
     </section>
 

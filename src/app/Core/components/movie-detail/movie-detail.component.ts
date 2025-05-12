@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MoviesService } from '../../Services/movies.service';
 import { Crew, IMovie } from '../../models/IMovie.interface';
 import { CommonModule } from '@angular/common';
@@ -12,32 +12,34 @@ import { MatIconModule } from '@angular/material/icon';
 import { CastCarouselComponent } from '../cast-carousel/cast-carousel/cast-carousel.component';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatDividerModule } from '@angular/material/divider';
-import { TrendingMoviesSectionComponent } from "../../../Views/Components/trending-movies-section/trending-movies-section.component";
+import { WatchlistMovieService } from '../../Services/WatchlistMovie.service';
+import { ToastrService } from 'ngx-toastr';
+import { Movie } from '../../Interfaces/Movie';
+import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
+import { CarouselComponent } from 'ngx-owl-carousel-o';
+
+
+
 
 @Component({
   selector: 'app-movie-detail',
   standalone: true,
-  imports: [CommonModule, RouterModule, MatCardModule, MatButtonModule, MatProgressSpinnerModule, MatChipsModule, TmdbImageUrlPipe, MatIconModule, CastCarouselComponent, MatDividerModule, TrendingMoviesSectionComponent],
+  imports: [CommonModule,RouterModule, MatCardModule, MatButtonModule, MatProgressSpinnerModule,
+    MatChipsModule, TmdbImageUrlPipe, MatIconModule, CastCarouselComponent, MatDividerModule,
+     CarouselModule ],
   templateUrl: './movie-detail.component.html',
   styleUrl: './movie-detail.component.css'
 })
 export class MovieDetailComponent implements OnInit {
-openReviewModal() {
-throw new Error('Method not implemented.');
-}
-scrollCast(arg0: number) {
-throw new Error('Method not implemented.');
-}
-playMovie() {
-throw new Error('Method not implemented.');
-}
+
   movieId: any = 0;
   movie: IMovie | undefined;
   videoUrl: string | undefined;
-  /**
-   *
-   */
-  constructor(private movieService: MoviesService, @Inject(DomSanitizer) private sanitizer: DomSanitizer, private activatedRoute: ActivatedRoute) {}
+  WatchlistMovielist:number[] = [];
+
+  constructor(private movieService: MoviesService, @Inject(DomSanitizer) private sanitizer: DomSanitizer,
+   private activatedRoute: ActivatedRoute , private _watchlistMovieService: WatchlistMovieService,
+  private _toastr: ToastrService,) {}
   ngOnInit(): void {
     this.movieId = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     if (this.movieId !== 0) {
@@ -67,6 +69,60 @@ if(Directing)
 else return;
 }
 
+// isInWatchlist(movieId: number): boolean {
+//   return this.WatchlistMovielist?.some(item => item.id === movieId);
+
+// }
+
+getWatchList():void{
+  this._watchlistMovieService.GetWatchlist().subscribe({
+      next: ({results} : {results: Movie[]}) => {
+        this.WatchlistMovielist = results.map(movie => movie.id);
+        console.log(results);
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+}
+
+  addToWatchList(movieId: number): void {
+    this._watchlistMovieService.AddToWatchlist(movieId).subscribe({
+      next: (response) => {
+        //make it updated to using it in html toggle button
+        this.WatchlistMovielist.push(movieId);
+        console.log('Movie added to watchlist:', response);
+
+        this._watchlistMovieService.total_results.next(this._watchlistMovieService.total_results.value + 1);
+        this._toastr.success("Moview added sussufully ")
+      },
+      error: (err) => {
+        console.error('Error adding movie to watchlist:', err);
+        this._toastr.error("movie removed sussufully")
+      },
+    });
+  }
+
+
+  RemoveFromWatchlist(movieId: number): void {
+
+    this._watchlistMovieService.RemoveFromWatchlist(movieId).subscribe({
+      next: (response) => {
+        this.WatchlistMovielist = this.WatchlistMovielist.filter(id => id !== movieId);
+        console.log('Movie removed from watchlist:', response);
+        this._watchlistMovieService.total_results.next(this._watchlistMovieService.total_results.value - 1);
+        this.WatchlistMovielist.filter(id => id !== movieId);
+        this._toastr.success(response.status_message, "Clacket")
+
+      },
+      error: (err) => {
+        console.error('Error removing movie from watchlist:', err);
+        this._toastr.error(err.status_message, "Clacket")
+
+      },
+    });
+
+}
 
 getMusicain(): Crew | undefined {
 
@@ -75,7 +131,45 @@ if(sound)
   return sound;
 else return;
 }
-  goBack() {
-    window.history.back();
-  }
+goBack() {
+  window.history.back();
+}
+
+
+@ViewChild('castCarousel', { static: false }) castCarousel?: CarouselComponent;
+
+
+castSliderOptions: OwlOptions = {
+  loop: true,
+  mouseDrag: true,
+  touchDrag: true,
+  pullDrag: false,
+  dots: true,
+  autoplay: true,
+  navSpeed: 700,
+  navText: ['‹', '›'],
+  responsive: {
+    0: { items: 2 },
+    400: { items: 3 },
+    600: { items: 4 },
+    768: { items: 6 },
+    1024: { items: 9 },
+    1200: { items: 9 },
+    1400: { items: 9 }
+  },
+  nav: false,
+  //  dotsEach: true,
+};
+
+
+goNext() {
+  this.castCarousel?.next();
+}
+
+goPrev() {
+  this.castCarousel?.prev();
+}
+
+
+
 }

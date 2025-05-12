@@ -8,10 +8,12 @@ import { CommonModule } from '@angular/common';
 import { TrendingMoviesSectionComponent } from '../trending-movies-section/trending-movies-section.component';
 import { IMovie } from '../../../Core/models/IMovie.interface';
 import { RouterLink } from '@angular/router';
+import { GenresComponent } from "../genres/genres.component";
+import { NavigationControlsComponent } from "../../../Shared/navigation-controls/navigation-controls.component";
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, TrendingMoviesSectionComponent, ScrollTopComponent , RouterLink],
+  imports: [CommonModule, TrendingMoviesSectionComponent, ScrollTopComponent, RouterLink, GenresComponent, NavigationControlsComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
