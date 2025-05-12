@@ -24,7 +24,7 @@ export const routes: Routes = [
   //****Blank-Layout****
   {path:'', canActivate:[authGuard], component:BlankLayoutComponent,
     children:[
-      // {path:'', redirectTo:'home', pathMatch:'full'}, //I commented this line to avoid redirecting to home page when the app loads => [Salah]
+      {path:'', redirectTo:'home', pathMatch:'full'}, //I commented this line to avoid redirecting to home page when the app loads => [Salah]
       {path:'home', component:HomeComponent, title:'Clacket'},
       {path:'movies-show', component:MoviesShowsComponent, title:'Movies&Shows'},
       {path:'WatchlistMovie', component:WatchlistMovieComponent, title:'WatchlistMovie'},
@@ -38,7 +38,6 @@ export const routes: Routes = [
       // {path:'details', component:MovieDetailsComponent, title:'details'},
       {path: 'details/:id', component:MovieDetailComponent, title:'details'},
       {path: 'notFound', component:NotFoundComponent, title:'not found'},
-      {path:'**', component: NotFoundComponent},
 
       //****Auth-Layout****
       {path: '',component: AuthLayoutComponent,
@@ -46,7 +45,6 @@ export const routes: Routes = [
           { path: '', component: LandingPageComponent, title: 'Welcome' },
           { path: 'login', component: LoginComponent, title: 'Login' },
           { path: 'register', component: RegisterComponent, title: 'Register' },
-          {path:'**', component: NotFoundComponent},
         ]
       },
     ]},
