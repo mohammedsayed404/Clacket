@@ -34,7 +34,7 @@
         <div class="error-message">{{ error() }}</div>
       }
       @if (activeTab() === 'search'){
-        <div class="row">
+        <div class="row g-4">
             @for (movie of searchResults(); track movie.id) {
       <div class="col-md-3 ">
           <div class="card content-card text-white cursor-pointer " [routerLink]="['/details' , movie.id]">
