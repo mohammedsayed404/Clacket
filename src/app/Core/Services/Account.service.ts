@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { API } from '../../API/API';
+import { jwtDecode } from 'jwt-decode';
 import { FormGroup } from '@angular/forms';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, take, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { IUser } from '../Interfaces/IUser';
 
@@ -17,7 +17,7 @@ BaseUrl:string = environment.apiUrl;
   private currentUserSource = new BehaviorSubject<IUser | null>(null);
   currentUser$ = this.currentUserSource.asObservable();
 
-Register(formData:FormGroup):Observable<IUser>{
+  Register(formData:FormGroup):Observable<IUser>{
   return this._httpClient.post<IUser>(`${this.BaseUrl}/register`,formData).pipe(
     tap((user:IUser)=>{
         if(user)
@@ -37,11 +37,27 @@ Login(formData:FormGroup):Observable<IUser>{
 }
 
 
-  setCurrentUser(user:IUser):void{
-    localStorage.setItem("token",JSON.stringify(user.token));
+GetUserId(){
+
+  const token = localStorage.getItem("token");
+
+  if (token) {
+      const decodedToken: any = jwtDecode(token);
+      const userId = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];
+      return userId;
+    }
+}
+
+
+
+
+setCurrentUser(user:IUser):void{
+    localStorage.setItem("token",user.token);
     this.currentUserSource.next(user);
-  }
+}
 
 
 
 }
+
+

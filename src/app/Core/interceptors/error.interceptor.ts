@@ -14,24 +14,35 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
       if (error) {
         switch (error.status) {
           case 400:
-            if (error.error.errors) {
-              const modelStateErrors = [];
-              for (const key in error.error.errors) {
-                if (error.error.errors[key])
-                  modelStateErrors.push(error.error.errors[key]);
-              }
-              throw modelStateErrors.flat();
-            } else
-             _toastrService.error(
-                error.error,
-                error.status.toString()
-              );
+            // if (error.error.errors) {
+            //   const modelStateErrors = [];
+            //   for (const key in error.error.errors) {
+            //     if (error.error.errors[key])
+            //       modelStateErrors.push(error.error.errors[key]);
+            //   }
+            //   throw modelStateErrors.flat();
+            // } else
+            //  _toastrService.error(
+            //     error.error,
+            //     error.status.toString()
+            //   );
+          //  if (error.error.errors) {
+          //     throw error.error;
+          //   } else {
+          //     _toastrService.error(error.error.message, error.error.statusCode);
+          //   }
+               _toastrService.error(
+              error.error.errors,
+            );
+
+            console.log(error.error.errors);
+
+
             break;
 
           case 401:
            _toastrService.error(
-              'Unauthorized',
-              error.status.toString()
+              error.error.message,
             );
             break;
           case 404:

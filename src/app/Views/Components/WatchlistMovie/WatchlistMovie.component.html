@@ -1,4 +1,4 @@
-<section class="mb-5">
+<section *ngIf="WatchlistMovielist" class="mb-5">
   <h2 class="text-white mb-4">Movies WatchList</h2>
 
   <div *ngIf="!WatchlistMovielist" class="text-center text-white">
@@ -37,3 +37,13 @@
 
   </div>
 </section>
+
+
+
+<div class="container" *ngIf="WatchlistMovielist.length === 0 " >
+  <div class="empty-watchlist text-center">
+    <img src="/images/stickman-watching-tv-empty.svg" alt="Empty Watchlist" class="empty-image mb-4">
+    <p class="mb-4 fw-bolder">You haven't added anything to your Watchlist yet.</p>
+    <a routerLink="/movies-show" class="btn btn-danger custom-btn">Explore Movies & Shows</a>
+  </div>
+</div>

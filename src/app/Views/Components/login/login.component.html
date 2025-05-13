@@ -1,42 +1,126 @@
-<div>
-  <div class="card m-auto" id="login">
-    <h2>Login</h2>
-    <form [formGroup]="loginForm" (ngSubmit)="Login(loginForm)">
-      <div class="mb-3">
-        <input #emailInput type="email" id="email" placeholder="email" formControlName="email" class="form-control " required>
-        <div class="alert alert-danger" *ngIf="
-        loginForm.get('email')?.errors &&
-        (loginForm.get('email')?.touched || emailInput.value.length > 0)
-      ">
-          <p *ngIf="loginForm.get('email')?.getError('required')">
-            email must be required
-          </p>
-          <p *ngIf="loginForm.get('email')?.getError('email')">
-            Email is not valid
-          </p>
-        </div>
-      </div>
+<div class="container-fluid login-section mt-5">
+  <div class="row w-100 h-100">
+    <div class="col-12 col-lg-5 d-flex align-items-center justify-content-center">
+      <div class="login-box w-100 rounded-2 custom-shadow">
+        <h2><i class="fas fa-film"></i> StreamViebs</h2>
+        <form [formGroup]="loginForm" (ngSubmit)="Login(loginForm)">
 
-
-
-
-      <div class="mb-3">
-        <input #passwordInput type="password" id="password" placeholder="Password" formControlName="password" class="form-control"
-          required>
-          <div class="alert alert-danger" *ngIf="
-          loginForm.get('password')?.errors &&
-          (loginForm.get('password')?.touched || passwordInput.value.length > 0)
-        ">
-            <p *ngIf="loginForm.get('password')?.getError('required')">
-              Password must be required
-            </p>
-
+          <div class="mb-3">
+            <input #emailInput type="email" formControlName="email" class="form-control"
+              placeholder="Email ...." required
+              [ngClass]="{ 'is-invalid': loginForm.get('email')?.invalid && (loginForm.get('email')?.touched || emailInput.value.length > 0) }">
+            <div *ngIf="loginForm.get('email')?.getError('required')" class="invalid-feedback mt-2">
+              Email is required.
+            </div>
+            <div *ngIf="loginForm.get('email')?.getError('email')" class="invalid-feedback mt-2">
+              Please enter a valid email address.
+            </div>
           </div>
+
+          <div class="mb-3">
+            <input #passwordInput type="password" formControlName="password" class="form-control" placeholder="Password"
+              required
+              [ngClass]="{ 'is-invalid': loginForm.get('password')?.invalid && (loginForm.get('password')?.touched || passwordInput.value.length > 0) }">
+
+            <div *ngIf="loginForm.get('password')?.hasError('required')" class="invalid-feedback mt-2">
+              Password is required.
+            </div>
+
+            <div *ngIf="loginForm.get('password')?.hasError('minlength')" class="invalid-feedback mt-2">
+              Password must be at least 6 characters.
+            </div>
+
+            <div *ngIf="loginForm.get('password')?.hasError('uppercase')" class="invalid-feedback mt-2">
+              Password must contain at least one uppercase letter.
+            </div>
+
+            <div *ngIf="loginForm.get('password')?.hasError('lowercase')" class="invalid-feedback mt-2">
+              Password must contain at least one lowercase letter.
+            </div>
+
+            <div *ngIf="loginForm.get('password')?.hasError('digit')" class="invalid-feedback mt-2">
+              Password must contain at least one digit.
+            </div>
+
+            <div *ngIf="loginForm.get('password')?.hasError('special')" class="invalid-feedback mt-2">
+              Password must contain at least one special character.
+            </div>
+          </div>
+
+          <button type="submit"><i class="fas fa-sign-in-alt me-2"></i>Sign In</button>
+
+          <div class="text-center mt-2">
+            <a  [routerLink]="['/register']" routerLinkActive="router-link-active"  class="text-secondary">Don't have an account? Register</a>
+          </div>
+
+          <div class="footer-text">
+            &copy; 2025 StreamViebs. All rights reserved.<br>
+          </div>
+        </form>
       </div>
-      <button type="submit">Login</button>
+    </div>
 
+    <div class="col-12 col-lg-7 d-none d-lg-block">
+      <section class="hero">
+        <div class="hero-background">
+          <div class="movie-grid">
+            <!-- Keep your movie-item images unchanged here -->
+            <!-- Images -->
+            <div class="movie-item"><img src="images/img_image.png" alt="Movie thumbnail"></div>
+            <div class="movie-item"><img src="images/img_image_200x151.png" alt="Movie thumbnail"></div>
+            <div class="movie-item"><img src="images/img_image_1.png" alt="Movie thumbnail"></div>
+            <div class="movie-item"><img src="images/img_image_2.png" alt="Movie thumbnail"></div>
+            <div class="movie-item"><img src="images/img_image_3.png" alt="Movie thumbnail"></div>
+            <div class="movie-item"><img src="images/img_image_4.png" alt="Movie thumbnail"></div>
+            <div class="movie-item"><img src="images/img_image_5.png" alt="Movie thumbnail"></div>
+            <div class="movie-item"><img src="images/img_image_6.png" alt="Movie thumbnail"></div>
+            <div class="movie-item"><img src="images/img_image_7.png" alt="Movie thumbnail"></div>
 
-    </form>
+            <div class="movie-item"><img src="images/img_image_8.png" alt="Movie thumbnail"></div>
+            <div class="movie-item"><img src="images/img_image_9.png" alt="Movie thumbnail"></div>
+            <div class="movie-item"><img src="images/img_image_10.png" alt="Movie thumbnail"></div>
+            <div class="movie-item"><img src="images/img_image_11.png" alt="Movie thumbnail"></div>
+            <div class="movie-item"><img src="images/img_image_12.png" alt="Movie thumbnail"></div>
+            <div class="movie-item"><img src="images/img_image_13.png" alt="Movie thumbnail"></div>
+            <div class="movie-item"><img src="images/img_image_14.png" alt="Movie thumbnail"></div>
+            <div class="movie-item"><img src="images/img_image_15.png" alt="Movie thumbnail"></div>
+            <div class="movie-item"><img src="images/img_image_16.png" alt="Movie thumbnail"></div>
+
+            <div class="movie-item"><img src="images/img_image_17.png" alt="Movie thumbnail"></div>
+            <div class="movie-item"><img src="images/img_image_18.png" alt="Movie thumbnail"></div>
+            <div class="movie-item"><img src="images/img_image_19.png" alt="Movie thumbnail"></div>
+            <div class="movie-item"><img src="images/img_image_20.png" alt="Movie thumbnail"></div>
+            <div class="movie-item"><img src="images/img_image_21.png" alt="Movie thumbnail"></div>
+            <div class="movie-item"><img src="images/img_image_22.png" alt="Movie thumbnail"></div>
+            <div class="movie-item"><img src="images/img_image_23.png" alt="Movie thumbnail"></div>
+            <div class="movie-item"><img src="images/img_image_24.png" alt="Movie thumbnail"></div>
+            <div class="movie-item"><img src="images/img_image_25.png" alt="Movie thumbnail"></div>
+
+            <div class="movie-item"><img src="images/img_image_26.png" alt="Movie thumbnail"></div>
+            <div class="movie-item"><img src="images/img_image_27.png" alt="Movie thumbnail"></div>
+            <div class="movie-item"><img src="images/img_image_28.png" alt="Movie thumbnail"></div>
+            <div class="movie-item"><img src="images/img_image_29.png" alt="Movie thumbnail"></div>
+            <div class="movie-item"><img src="images/img_image_30.png" alt="Movie thumbnail"></div>
+            <div class="movie-item"><img src="images/img_image_31.png" alt="Movie thumbnail"></div>
+            <div class="movie-item"><img src="images/img_image_32.png" alt="Movie thumbnail"></div>
+            <div class="movie-item"><img src="images/img_image_33.png" alt="Movie thumbnail"></div>
+            <div class="movie-item"><img src="images/img_image_34.png" alt="Movie thumbnail"></div>
+          </div>
+          <div class="hero-overlay"></div>
+          <div class="abstract-design">
+            <img src="images/img_abstract_design.png" alt="Abstract design">
+          </div>
+        </div>
+
+        <div class="hero-content">
+          <h1 class="hero-title fw-bolder">The Best Streaming Experience</h1>
+          <p class="hero-description fw-bolder">Clacket is the best streaming experience for watching your favorite movies and shows on demand, anytime, anywhere. With StreamVibe, you can enjoy a wide variety of content, including the latest blockbusters, classic movies, popular TV shows, and more. You can also create your own watchlists, so you can easily find the content you want to watch.</p>
+          <button class="btn btn-primary">
+            <img src="images/img_icon_1.svg" alt="Play icon" class="btn-icon">
+            Start Watching Now
+          </button>
+        </div>
+      </section>
+    </div>
   </div>
-
 </div>

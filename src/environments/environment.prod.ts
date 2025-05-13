@@ -1,6 +1,6 @@
 export const environment ={
   production:true,
-  apiUrl:'https://localhost:5001/api/account',
+  apiUrl:'http://clacketstreamvibe.runasp.net/api/account',
 
 
 }

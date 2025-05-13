@@ -56,7 +56,7 @@ export class MovieDetailComponent implements OnInit {
         console.error('Error fetching movie details:', error);
       });
     }
-
+this.refreshWatchlistData();
 
   }
 
@@ -69,36 +69,25 @@ if(Directing)
 else return;
 }
 
-// isInWatchlist(movieId: number): boolean {
-//   return this.WatchlistMovielist?.some(item => item.id === movieId);
 
-// }
+refreshWatchlistData():void{
+    this._watchlistMovieService.getClacketWatchlist().subscribe({
+      next: ({movieIds}) => {
+        this.WatchlistMovielist = movieIds;
+        console.log(movieIds);
+       }
 
-getWatchList():void{
-  this._watchlistMovieService.GetWatchlist().subscribe({
-      next: ({results} : {results: Movie[]}) => {
-        this.WatchlistMovielist = results.map(movie => movie.id);
-        console.log(results);
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
+  });
 }
-
   addToWatchList(movieId: number): void {
     this._watchlistMovieService.AddToWatchlist(movieId).subscribe({
-      next: (response) => {
-        //make it updated to using it in html toggle button
-        this.WatchlistMovielist.push(movieId);
-        console.log('Movie added to watchlist:', response);
-
+      next: ({movieIds}) => {
+        this.WatchlistMovielist = movieIds;
         this._watchlistMovieService.total_results.next(this._watchlistMovieService.total_results.value + 1);
         this._toastr.success("Moview added sussufully ")
       },
       error: (err) => {
-        console.error('Error adding movie to watchlist:', err);
-        this._toastr.error("movie removed sussufully")
+        this._toastr.error(err);
       },
     });
   }
@@ -107,18 +96,14 @@ getWatchList():void{
   RemoveFromWatchlist(movieId: number): void {
 
     this._watchlistMovieService.RemoveFromWatchlist(movieId).subscribe({
-      next: (response) => {
-        this.WatchlistMovielist = this.WatchlistMovielist.filter(id => id !== movieId);
-        console.log('Movie removed from watchlist:', response);
+      next: ({movieIds}) => {
+        this.WatchlistMovielist = movieIds;
         this._watchlistMovieService.total_results.next(this._watchlistMovieService.total_results.value - 1);
-        this.WatchlistMovielist.filter(id => id !== movieId);
-        this._toastr.success(response.status_message, "Clacket")
+        this._toastr.success("movie removed sussufully");
 
       },
       error: (err) => {
-        console.error('Error removing movie from watchlist:', err);
-        this._toastr.error(err.status_message, "Clacket")
-
+        this._toastr.error(err);
       },
     });
 

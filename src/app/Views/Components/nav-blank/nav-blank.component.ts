@@ -15,7 +15,7 @@ export class NavBlankComponent implements OnInit {
     private _watchlistMovieService:WatchlistMovieService , private _renderer2:Renderer2) { }
 
   watchlistCount:number = 0;
-
+  ClacketWatchlistCount:number[] = [];
 
 //   @ViewChild('navBlank') navBlank:ElementRef | undefined ;
 //   @HostListener('window:scroll', ['$event'])
@@ -56,11 +56,11 @@ export class NavBlankComponent implements OnInit {
     })
 
 
-    this._watchlistMovieService.GetWatchlist().subscribe({
-      next: (response) => {
-        this.watchlistCount = response.total_results;
-        this._watchlistMovieService.total_results.next(response.total_results);
-        console.log(response);
+
+    this._watchlistMovieService.getClacketWatchlist().subscribe({
+      next: ({movieIds}) => {
+        this._watchlistMovieService.total_results.next(movieIds.length);
+        console.log(movieIds.length);
 
       },
       error: (err) => {

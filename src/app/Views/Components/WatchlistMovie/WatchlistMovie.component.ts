@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { IMovie } from '../../../Core/models/IMovie.interface';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { MoviesService } from '../../../Core/Services/movies.service';
 
 @Component({
   selector: 'app-watchlistmovie',
@@ -17,20 +18,30 @@ export class WatchlistMovieComponent implements OnInit , OnDestroy {
 WatchlistMovieSubscribe:Subscription= new Subscription();
 WatchlistMovielist:IMovie[] = [];
 
-constructor(private _watchlistMovieService:WatchlistMovieService, private _toastr: ToastrService) { }
+constructor(private _watchlistMovieService:WatchlistMovieService, private _toastr: ToastrService,
+  private _MoviesService:MoviesService
+) { }
 
 
   ngOnInit(): void {
 
-  this.WatchlistMovieSubscribe =  this._watchlistMovieService.GetWatchlist().subscribe({
-      next: ({results}) => {
-        this.WatchlistMovielist = results;
-        console.log(results);
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
+  this.WatchlistMovieSubscribe =  this._watchlistMovieService.getClacketWatchlist().subscribe({
+      next: ({movieIds}) => {
+
+         for (let index = 0; index < movieIds.length; index++) {
+              const movieId = movieIds[index];
+
+               this._watchlistMovieService.GetWatchlist(movieId).subscribe({
+                next: movie => this.WatchlistMovielist.push(movie),
+
+               })
+
+         }
+       }
+
+  });
+
+
 
 
   }
@@ -43,7 +54,7 @@ constructor(private _watchlistMovieService:WatchlistMovieService, private _toast
         console.log('Movie removed from watchlist:', response);
         this._watchlistMovieService.total_results.next(this._watchlistMovieService.total_results.value - 1);
         this.WatchlistMovielist = this.WatchlistMovielist.filter(movie => movie.id !== movieId);
-        this._toastr.success(response.status_message, "Clacket")
+        this._toastr.success( "Movie removed sussufully ")
 
       },
       error: (err) => {
