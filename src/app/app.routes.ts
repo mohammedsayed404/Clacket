@@ -17,6 +17,7 @@ import { MovieSearchComponent } from './Core/components/movie-search/movie-searc
 import { MovieCategoryComponent } from './Views/Components/movie-category/movie-category.component';
 import { MoviesShowsComponent } from './Views/Components/movies-shows/movies-shows.component';
 import { TopTenComponent } from './Views/Components/top-ten/top-ten.component';
+import { DashboardComponent } from './Core/components/dashboard/dashboard.component';
 
 
 export const routes: Routes = [
@@ -33,6 +34,7 @@ export const routes: Routes = [
       {path:'movie-category/:id', component:MovieCategoryComponent, title:'Category'}, // i will change it later
       {path:'top-ten/:id', component:TopTenComponent, title:'TopTen'}, // i will change it later
       {path:'nowPlaying', component:NowPlayingMoviesComponent, title:'nowPlaying'},
+      {path:'dashboard', component:DashboardComponent, title:'Dashboard'},
       {path:'movie-search', component:MovieSearchComponent, title:'movie-search'},
       {path:'popular', component:PopularComponent, title:'popular'},
       {path:'topRated', component:TopRatedComponent, title:'topRated'},

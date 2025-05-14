@@ -58,7 +58,11 @@ export class MovieDetailComponent implements OnInit {
     }
 this.refreshWatchlistData();
 
-  }
+//  this._watchlistMovieService.watchlist$.subscribe({
+//     next: (movieIds) => this.WatchlistMovielist = movieIds,
+//   });
+
+}
 
 
 getDirector(): Crew | undefined {
@@ -78,13 +82,18 @@ refreshWatchlistData():void{
        }
 
   });
+
+  this._watchlistMovieService.watchlist$.subscribe({
+    next: (movieIds) => this.WatchlistMovielist = movieIds,
+  });
+
 }
   addToWatchList(movieId: number): void {
     this._watchlistMovieService.AddToWatchlist(movieId).subscribe({
       next: ({movieIds}) => {
-        this.WatchlistMovielist = movieIds;
+        this._watchlistMovieService.updateWatchlistData(movieIds);
         this._watchlistMovieService.total_results.next(this._watchlistMovieService.total_results.value + 1);
-        this._toastr.success("Moview added sussufully ")
+        this._toastr.success(" added sussufully ")
       },
       error: (err) => {
         this._toastr.error(err);
@@ -97,7 +106,7 @@ refreshWatchlistData():void{
 
     this._watchlistMovieService.RemoveFromWatchlist(movieId).subscribe({
       next: ({movieIds}) => {
-        this.WatchlistMovielist = movieIds;
+        this._watchlistMovieService.updateWatchlistData(movieIds);
         this._watchlistMovieService.total_results.next(this._watchlistMovieService.total_results.value - 1);
         this._toastr.success("movie removed sussufully");
 
@@ -138,9 +147,9 @@ castSliderOptions: OwlOptions = {
     400: { items: 3 },
     600: { items: 4 },
     768: { items: 6 },
-    1024: { items: 9 },
-    1200: { items: 9 },
-    1400: { items: 9 }
+    1024: { items: 6 },
+    1200: { items: 6 },
+    1400: { items: 6 }
   },
   nav: false,
   //  dotsEach: true,

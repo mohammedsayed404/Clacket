@@ -1,7 +1,7 @@
-import { Component, inject ,signal} from '@angular/core';
+import { AfterViewInit, Component, ElementRef, inject ,Input,Renderer2,signal, ViewChild} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router'
+import { Router, RouterModule } from '@angular/router'
 import { MoviesService } from '../../Services/movies.service';
 import { Movie } from '../../Interfaces/Movie';
 import { WatchlistMovieService } from '../../Services/WatchlistMovie.service';
@@ -16,10 +16,44 @@ import { TmdbImageUrlPipe } from "../../pipes/tmdb-image-url.pipe";
   templateUrl: './movie-search.component.html',
   styleUrls: ['./movie-search.component.css']
 })
-export class MovieSearchComponent {
+export class MovieSearchComponent implements AfterViewInit {
   private movieService = inject(MoviesService);
   WatchlistMovielist:number[] = [];
-  constructor(private _watchlistMovieService: WatchlistMovieService,private _toastr: ToastrService,){}
+@ViewChild('searchInput') searchInput:ElementRef | undefined ;
+shouldFocus: boolean = false;
+  constructor(private _watchlistMovieService: WatchlistMovieService,private _toastr: ToastrService, private _renderer2:Renderer2,
+    private router: Router){
+
+    const nav = this.router.getCurrentNavigation();
+    this.shouldFocus = nav?.extras?.state?.['focusInput'] || false;
+  }
+
+
+
+
+
+
+
+
+
+
+  ngAfterViewInit(): void {
+    if (this.shouldFocus && this.searchInput) {
+      setTimeout(() => {
+        this.searchInput?.nativeElement.focus();
+        this._renderer2.addClass(this.searchInput?.nativeElement, 'focused');
+      });
+    }
+    }
+
+
+
+
+
+
+
+
+
   // State
   movies = this.movieService.movies;
   isLoading = this.movieService.isLoading;
@@ -87,13 +121,18 @@ refreshWatchlistData():void{
        }
 
   });
+
+  this._watchlistMovieService.watchlist$.subscribe({
+    next: (movieIds) => this.WatchlistMovielist = movieIds,
+  });
+
 }
   addToWatchList(movieId: number): void {
     this._watchlistMovieService.AddToWatchlist(movieId).subscribe({
       next: ({movieIds}) => {
-        this.WatchlistMovielist = movieIds;
+        this._watchlistMovieService.updateWatchlistData(movieIds);
         this._watchlistMovieService.total_results.next(this._watchlistMovieService.total_results.value + 1);
-        this._toastr.success("Moview added sussufully ")
+        this._toastr.success("added sussufully ")
       },
       error: (err) => {
         this._toastr.error(err);
@@ -106,7 +145,7 @@ refreshWatchlistData():void{
 
     this._watchlistMovieService.RemoveFromWatchlist(movieId).subscribe({
       next: ({movieIds}) => {
-        this.WatchlistMovielist = movieIds;
+        this._watchlistMovieService.updateWatchlistData(movieIds);
         this._watchlistMovieService.total_results.next(this._watchlistMovieService.total_results.value - 1);
         this._toastr.success("movie removed sussufully");
 

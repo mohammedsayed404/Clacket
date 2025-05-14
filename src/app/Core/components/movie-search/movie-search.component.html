@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <main class="movie-page">
     <header class="page-header">
-      <h1>Movies</h1>
+      <h1 class="mt-5">Movies</h1>
       <nav class="filter-nav justify-content-center">
         @for (option of sortOptions; track option.value) {
           <button
@@ -12,6 +12,7 @@
         }
         <div class="d-flex">
             <input
+            #searchInput
             type="text"
             class = "searchBar"
             [(ngModel)]="searchTerm"
@@ -26,17 +27,12 @@
     </header>
     <br>
     <section class="movie-grid-container">
-      @if (isLoading()) {
-        <div class="loading-spinner">Loading...</div>
-      }
 
-      @if (error()) {
-        <div class="error-message">{{ error() }}</div>
-      }
+
       @if (activeTab() === 'search'){
         <div class="row g-4">
             @for (movie of searchResults(); track movie.id) {
-      <div class="col-md-3 ">
+      <div class="col-lg-3 col-md-4 col-sm-6 col-12" *ngIf="movie.poster_path ">
           <div class="card content-card text-white cursor-pointer " >
             <img  [routerLink]="['/details' , movie.id]" [src]="movie.poster_path | tmdbImageUrl" class="card-img-top content-image" [alt]="movie.title">
             <div class="card-body p-3">
@@ -69,7 +65,7 @@
       }@else{
         <div class="row g-4">
             @for (movie of movies(); track movie.id) {
-          <div class="col-md-3 ">
+          <div class="col-lg-3 col-md-4 col-sm-6 col-12"  *ngIf="movie.poster_path ">
           <div class="card content-card text-white cursor-pointer " >
             <img [routerLink]="['/details' , movie.id]" [src]="movie.poster_path | tmdbImageUrl" class="card-img-top content-image" [alt]="movie.title">
             <div class="card-body p-3">

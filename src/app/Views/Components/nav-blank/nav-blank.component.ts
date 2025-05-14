@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild, viewChild} from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { WatchlistMovieService } from '../../../Core/Services/WatchlistMovie.service';
+import { AccountService } from '../../../Core/Services/Account.service';
 
 @Component({
   selector: 'app-nav-blank',
@@ -12,7 +13,8 @@ import { WatchlistMovieService } from '../../../Core/Services/WatchlistMovie.ser
 export class NavBlankComponent implements OnInit {
 
   constructor(private _router:Router,
-    private _watchlistMovieService:WatchlistMovieService , private _renderer2:Renderer2) { }
+    private _watchlistMovieService:WatchlistMovieService ,
+     private _renderer2:Renderer2 , private router: Router,private _AccountService:AccountService) { }
 
   watchlistCount:number = 0;
   ClacketWatchlistCount:number[] = [];
@@ -40,6 +42,11 @@ export class NavBlankComponent implements OnInit {
 //     }
 //   }
 
+goToSearch() {
+  this.router.navigate(['/movie-search'], {
+    state: { focusInput: true }
+  });
+}
 
 
 
@@ -69,6 +76,10 @@ export class NavBlankComponent implements OnInit {
     });
   }
 
+
+ getRole():string | undefined{
+  return this._AccountService.GetAdmin();
+ }
 
 LogOut():void {
   localStorage.clear();

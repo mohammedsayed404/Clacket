@@ -43,20 +43,21 @@
   <div class="container header-container">
     <div class="container header-container">
             <div class="logo">
-                <img src="/images/img_logo.svg" alt="StreamVibe Logo">
+                <img src="images/img_logo.svg" alt="StreamVibe Logo">
             </div>
 
             <nav class="nav-menu">
-                <div class="nav-item active"   routerLinkActive="active"  routerLink="home">Home</div>
-                <div class="nav-item"  routerLinkActive="active"  routerLink="movies-show">Movies & Shows</div>
-                <div class="nav-item"  routerLinkActive="active"  routerLink="WatchlistMovie">WatchlistMovie</div>
+                <div class="nav-item active"   routerLinkActive="active"  routerLink="/home">Home</div>
+                <div class="nav-item"  routerLinkActive="active"  routerLink="/movies-show">Movies & Shows</div>
+                <div class="nav-item"  routerLinkActive="active"  routerLink="/WatchlistMovie">WatchlistMovie</div>
+                <div class="nav-item"  *ngIf="getRole() === 'admin'" routerLinkActive="active"  routerLink="/dashboard">Chart</div>
             </nav>
 
             <div class="header-icons align-items-center">
-                <div class="header-icon">
+                <div class="header-icon" (click)="goToSearch()">
                     <img src="images/img_icon.svg" alt="Search">
                 </div>
-                <div class="header-icon position-relative" routerLink="WatchlistMovie">
+                <div class="header-icon position-relative" routerLink="/WatchlistMovie">
                     <img src="images/img_icon_24x24.svg" class="" alt="Notifications">
                <span *ngIf="watchlistCount" class="badge  position-absolute top-0 start-100 translate-middle p-1 rounded-circle"
                style="font-size: 15px; font-weight: 500;background-color: #1a1a1a; color: #ffffff;">{{watchlistCount}}</span>

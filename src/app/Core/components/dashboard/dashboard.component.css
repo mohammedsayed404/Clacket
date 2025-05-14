@@ -1,0 +1,30 @@
+.powerbi-container {
+  width: 100%;
+  min-height: 80vh;
+  background-color: #141414;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.powerbi-frame {
+  width: 100%;
+  max-width: 1200px;
+  height: 600px;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+  background-color: #000;
+}
+@media (max-width: 768px) {
+  .powerbi-frame {
+    height: 400px;
+  }
+}
+
+@media (max-width: 576px) {
+  .powerbi-frame {
+    height: 300px;
+  }
+}

@@ -10,7 +10,13 @@ bootstrapApplication(AppComponent, {
   providers: [
     ...(appConfig.providers || []),
     provideAnimations(),
-    provideToastr(),
+    provideToastr({
+  positionClass: 'toast-top-left',
+  toastClass: 'ngx-toastr custom-toast',
+  timeOut: 2000,
+  progressBar: true,
+  closeButton: true,
+}),
     BrowserAnimationsModule,
     NgxSpinnerModule,
   ]

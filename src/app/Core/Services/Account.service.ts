@@ -48,6 +48,18 @@ GetUserId(){
     }
 }
 
+GetAdmin():string | undefined{
+
+  const token = localStorage.getItem("token");
+
+  if (token) {
+      const decodedToken: any = jwtDecode(token);
+      const role = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] as string;
+      return role;
+    }
+
+    return;
+}
 
 
 

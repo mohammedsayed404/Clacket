@@ -31,6 +31,8 @@ WatchlistMovielist:number[] = [];
   ) {}
 
 
+
+
   ngOnInit(): void {
     // this.getTrendingMovies();
     this.getPopularMovies();
@@ -79,13 +81,18 @@ refreshWatchlistData():void{
        }
 
   });
+
+  this._watchlistMovieService.watchlist$.subscribe({
+    next: (movieIds) => this.WatchlistMovielist = movieIds,
+  });
+
 }
   addToWatchList(movieId: number): void {
     this._watchlistMovieService.AddToWatchlist(movieId).subscribe({
       next: ({movieIds}) => {
-        this.WatchlistMovielist = movieIds;
+        this._watchlistMovieService.updateWatchlistData(movieIds);
         this._watchlistMovieService.total_results.next(this._watchlistMovieService.total_results.value + 1);
-        this._toastr.success("Moview added sussufully ")
+        this._toastr.success("added sussufully")
       },
       error: (err) => {
         this._toastr.error(err);
@@ -98,7 +105,7 @@ refreshWatchlistData():void{
 
     this._watchlistMovieService.RemoveFromWatchlist(movieId).subscribe({
       next: ({movieIds}) => {
-        this.WatchlistMovielist = movieIds;
+        this._watchlistMovieService.updateWatchlistData(movieIds);
         this._watchlistMovieService.total_results.next(this._watchlistMovieService.total_results.value - 1);
         this._toastr.success("movie removed sussufully");
 

@@ -50,10 +50,12 @@ constructor(private _watchlistMovieService:WatchlistMovieService, private _toast
   RemoveFromWatchlist(movieId: number): void {
 
     this._watchlistMovieService.RemoveFromWatchlist(movieId).subscribe({
-      next: (response) => {
-        console.log('Movie removed from watchlist:', response);
-        this._watchlistMovieService.total_results.next(this._watchlistMovieService.total_results.value - 1);
+      next: ({movieIds}) => {
+        console.log('Movie removed from watchlist:', movieIds);
+        //i will look at  it again
+        this._watchlistMovieService.updateWatchlistData(movieIds);
         this.WatchlistMovielist = this.WatchlistMovielist.filter(movie => movie.id !== movieId);
+        this._watchlistMovieService.total_results.next(this._watchlistMovieService.total_results.value > 0 ? this._watchlistMovieService.total_results.value - 1 : 0);
         this._toastr.success( "Movie removed sussufully ")
 
       },
@@ -65,6 +67,7 @@ constructor(private _watchlistMovieService:WatchlistMovieService, private _toast
     });
 
 }
+
 
 
 ngOnDestroy(): void {

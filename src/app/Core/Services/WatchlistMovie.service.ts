@@ -11,6 +11,8 @@ import { environment } from '../../../environments/environment';
 export class WatchlistMovieService {
 
 total_results:BehaviorSubject<number> = new BehaviorSubject(0);
+ private watchlistSource = new BehaviorSubject<number[]>([]);
+  watchlist$ = this.watchlistSource.asObservable();
 
   constructor(private _httpClient:HttpClient, private _accountService:AccountService) { }
 
@@ -25,6 +27,9 @@ GetWatchlist(moviesId:number):Observable<any>{
   return this._httpClient.get(`${API.TMDBUrl}/movie/${moviesId}`);
 }
 
+updateWatchlistData(newList: number[]) {
+    this.watchlistSource.next(newList);
+  }
 
 
 getClacketWatchlist():Observable<any>{

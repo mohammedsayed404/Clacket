@@ -31,7 +31,7 @@
   <div class="d-flex justify-content-between">
     <h2 class="text-white fw-bolder ms-2">Popular Top 10 In Genres</h2>
   </div>
-  <div class="categories-grid ">
+  <div class="categories-grid  ">
     <div class="category-card position-relative ">
       <div class="category-images">
         <div class="category-image">
@@ -166,7 +166,7 @@
   <div class="row justify-content-center">
     <owl-carousel-o #trendingMoviesCarousel [options]="trendingMoviesSliderOptions">
       @for (movie of trendingMovies; track movie.id) {
-      <ng-template carouselSlide>
+      <ng-template carouselSlide  *ngIf="movie.poster_path ">
         <div class="cursor-pointer">
           <div class="card content-card text-white ">
             <img [routerLink]="['/details' , movie.id]"  [src]="movie.poster_path | tmdbImageUrl" class="card-img-top content-image" [alt]="movie.title">
@@ -201,6 +201,8 @@
 </section>
 
 <section>
-<app-List-Search></app-List-Search>
+<app-List-Search ></app-List-Search>
 
 </section>
+
+
