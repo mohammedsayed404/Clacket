@@ -6,15 +6,17 @@ import { IMovie } from '../../../Core/models/IMovie.interface';
 import { Movie } from '../../../Core/Interfaces/Movie';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { TmdbImageUrlPipe } from "../../../Core/pipes/tmdb-image-url.pipe";
 
 @Component({
   selector: 'app-movie-category',
-  imports: [CommonModule,RouterLink],
+  imports: [CommonModule, RouterLink, TmdbImageUrlPipe],
   templateUrl: './movie-category.component.html',
   styleUrl: './movie-category.component.css'
 })
 export class MovieCategoryComponent implements OnInit {
  movielist: IMovie[] | undefined;
+  WatchlistMovielist:number[] = [];
  categoryId: number = 0;
     constructor(
       private _moviesService: MoviesService,
@@ -26,6 +28,7 @@ export class MovieCategoryComponent implements OnInit {
         this.categoryId = Number(this._activatedRoute.snapshot.paramMap.get('id'));
         console.log(this.categoryId);
         this.getMovieByCategory(this.categoryId);
+        this.refreshWatchlistData();
   }
 
 
@@ -42,20 +45,50 @@ getMovieByCategory(categoryNumber:number): void {
     });
   }
 
+refreshWatchlistData():void{
+    this._watchlistMovieService.getClacketWatchlist().subscribe({
+      next: ({movieIds}) => {
+        this.WatchlistMovielist = movieIds;
+        console.log(movieIds);
+       }
 
-    addToWatchList(movieId: number): void {
+  });
+
+  this._watchlistMovieService.watchlist$.subscribe({
+    next: (movieIds) => this.WatchlistMovielist = movieIds,
+  });
+
+}
+  addToWatchList(movieId: number): void {
     this._watchlistMovieService.AddToWatchlist(movieId).subscribe({
-      next: (response) => {
-        console.log('Movie added to watchlist:', response);
+      next: ({movieIds}) => {
+        this._watchlistMovieService.updateWatchlistData(movieIds);
         this._watchlistMovieService.total_results.next(this._watchlistMovieService.total_results.value + 1);
-        this._toastr.success(response.status_message, "Clacket")
+        this._toastr.success(" added sussufully ")
       },
       error: (err) => {
-        console.error('Error adding movie to watchlist:', err);
-        this._toastr.error(err.status_message, "Clacket")
+        this._toastr.error(err);
       },
     });
   }
+
+
+  RemoveFromWatchlist(movieId: number): void {
+
+    this._watchlistMovieService.RemoveFromWatchlist(movieId).subscribe({
+      next: ({movieIds}) => {
+        this._watchlistMovieService.updateWatchlistData(movieIds);
+        this._watchlistMovieService.total_results.next(this._watchlistMovieService.total_results.value - 1);
+        this._toastr.success("movie removed sussufully");
+
+      },
+      error: (err) => {
+        this._toastr.error(err);
+      },
+    });
+
+}
+
 
 
 }

@@ -1,39 +1,33 @@
 <section class="mb-5">
-  <h2 class="text-white mb-4">Category Movies</h2>
+  <h2 class="text-white mb-4">Top ten Movies</h2>
 
-  <div *ngIf="!topTenByGeners" class="text-center text-white">
-    Loading  movies...
-  </div>
-
-  <div class="row g-4" *ngIf="topTenByGeners">
-
-    <div *ngFor="let movie of topTenByGeners.slice(10)" class="col-6 col-md-4 col-lg-3 cursor-pointer"   >
-      <div class="card bg-dark text-white h-100">
-        <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" class="card-img-top" alt="Movie Poster" [routerLink]="['/details' , movie.id]"
-          style="height: 300px; object-fit: cover; border-radius: 10px;" />
-        <div class="card-body p-2 d-flex flex-column justify-content-between">
-          <h6 class="card-title mb-2" style="font-size: 1rem;">{{ movie.original_title }}</h6>
-
-          <div class="d-flex justify-content-between align-items-center" style="font-size: 0.8rem;">
-            <div class="d-flex align-items-center gap-1">
-              <i class="bi bi-clock"></i>
-              <span>1h 30min</span>
+   <div class="row g-4">
+            @for (movie of topTenByGeners; track movie.id) {
+          <div class="col-lg-3 col-md-4 col-sm-6 col-12"  *ngIf="movie.poster_path ">
+          <div class="card content-card text-white cursor-pointer " >
+            <img [routerLink]="['/details' , movie.id]" [src]="movie.poster_path | tmdbImageUrl" class="card-img-top content-image" [alt]="movie.title">
+            <div class="card-body p-3">
+              <div class="d-flex justify-content-between align-items-center content-meta mt-3 mb-0">
+                <div class="d-flex align-items-center meta-item  rounded-1 " style="background-color:#141414 ;">
+                  <span class="meta-text cursor-pointer">
+                    <span *ngIf="WatchlistMovielist.includes(movie.id)" (click)="RemoveFromWatchlist(movie.id)"
+                    class="action-icon-button p-3 d-flex justify-content-center align-items-center " style="background-color: #630303;">
+                    <i class="fa-solid fa-minus text-white "></i>
+                  </span>
+                  <span *ngIf="!WatchlistMovielist.includes(movie.id)" (click)="addToWatchList(movie.id)"
+                  class="action-icon-button p-3 d-flex justify-content-center align-items-center ">
+                    <img src="images/img_vector_12x12.svg" alt="Add to list">
+                    </span>
+                  </span>
+                </div>
+                <div class="d-flex align-items-center meta-item  rounded-1 p-1" style="background-color:#141414 ;">
+                  <img src="/images/Rateing_icon_4.svg" alt="Views" class="me-2" width="20" height="20">
+                  <span class="meta-text">{{ movie.vote_average | number: '1.1-1'  }}</span>
+                </div>
+              </div>
             </div>
-
-            <div class="d-flex align-items-center gap-1">
-              <i class="bi bi-eye"></i>
-              <span>{{ movie.popularity ? movie.popularity.toFixed(1) : '0.0' }}K</span>
-            </div>
-          </div>
-
-          <div class="mt-2 text-center">
-            <button class="btn btn-outline-warning btn-sm w-100" (click)="addToWatchList(movie.id)">
-              + Add to Watchlist
-            </button>
           </div>
         </div>
-      </div>
-    </div>
-
-  </div>
+            }
+        </div>
 </section>
